@@ -3,12 +3,15 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
+//        configurations.all {
+//            resolutionStrategy { force 'androidx.core:core:1.6.0' }
+//        }
         applicationId "com.example.studentcoursebooking_seg2105_group6"
         minSdk 22
-        targetSdk 31
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
