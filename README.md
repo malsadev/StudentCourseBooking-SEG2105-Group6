@@ -2,7 +2,7 @@
 Group 6 project deliverable 1
 
 # Collaboration Workflow
-Clone the repo using Http protocol. "git clone <http address of repo>" you can find the address on green menu on the top right of the repo. 
+Clone the repo using HTTP. "git clone <http address of repo>" you can find the address on green menu on the top right of the repo. 
   
 You may be prompted to authenticate yourself. In which case, use yout github username and the personal access token as the password. Using your regular github password wont work
  
