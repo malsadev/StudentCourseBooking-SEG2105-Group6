@@ -2,7 +2,12 @@
 Group 6 project deliverable 1
 
 # Collaboration Workflow
-
+Clone the repo using Http protocol. "git clone <http address of repo>" you can find the address on green menu on the top right of the repo. 
+  
+You may be prompted to authenticate yourself. In which case, use yout github username and the personal access token as the password. Using your regular github password wont work
+ 
+**After cloning**
+ 
 Pull latest code (git pull or git pull origin)
 
 Create a branch and name it appropriately. For example, if your task consists mainly of creating a front-end button for adding a course, name your branch "<your name>-course-add-button-frontend". As long as the scope of the work is reflected in the branch name, its fine.
