@@ -25,7 +25,7 @@ After committing your changes, push the your branch to github using "git push or
 
 After pushing, navigate to the github repo and create your pull request (PR) and add PR reviewers. Choose at least 2 members from the team. 
 
-**Please don't merge your PR's before reviewers have a chance to review your changes** this will avoid having to rollback versions (which is time consuming).
+**Please don't merge your PR's before review process is complete** this will avoid having to rollback versions (which is time consuming).
 
 After reviewe process is complete, merge your PR.
 
