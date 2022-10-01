@@ -1,6 +1,7 @@
 package com.example.studentcoursebooking_seg2105_group6;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -22,5 +23,11 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.studentcoursebooking_seg2105_group6", appContext.getPackageName());
+    }
+    @Test
+    public void onCreate() {
+
+        System.out.println("Test");
+        System.out.println("please work");
     }
 }
