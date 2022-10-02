@@ -24,71 +24,31 @@
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="375dp"
-        android:layout_height="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:drawableRight="@drawable/ic_baseline_person_24"
         android:hint="Username"
         android:padding="15dp"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295"/>
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/userLogin"
+        app:layout_constraintVertical_bias="0.84000003"
+        tools:layout_editor_absoluteX="10dp" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="375dp"
-        android:layout_height="50dp"
-        android:layout_app_constraint_referenced_ids="password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:background="@color/white"
         android:drawableRight="@drawable/ic_baseline_lock_24"
         android:hint="Password"
         android:padding="15dp"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:text="LOGIN"
-        android:textColor="#FFFFFF"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:backgroundTint="#8B48BE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".53"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:text="create an account"
-        android:textColor="#FFFFFF"
-        android:textSize="15dp"
-        app:backgroundTint="#B0BB77ED"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".63" />
-
+        app:layout_constraintTop_toBottomOf="@+id/userLogin"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
