@@ -8,13 +8,13 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/userLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User login "
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="USER LOGIN "
+        android:textColor="#8A49BF"
+        android:textSize="35sp"
         android:textStyle="bold"
-        android:id="@+id/userLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,11 +24,30 @@
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="390dp"
-        android:layout_height="51dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:drawableRight="@drawable/ic_baseline_person_24"
         android:hint="Username"
-        android:textSize="25sp"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="182dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawableRight="@drawable/ic_baseline_lock_24"
+        android:hint="Password"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="286dp"
+        android:layout_app_constraint_referenced_ids="password"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
