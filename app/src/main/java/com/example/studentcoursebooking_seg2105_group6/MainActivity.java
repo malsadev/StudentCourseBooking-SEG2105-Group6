@@ -5,13 +5,19 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -26,6 +32,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //function find id of button on screen
+        // R represents list of all ressources that exists in application
+        // sub class id, find id associated with button 1
+        EditText username = (EditText)  findViewById(R.id.username);
+        EditText password = (EditText)findViewById(R.id.password);
+        Button loginBtn = (Button)findViewById(R.id.loginBtn);
+        Button createActBtn=(Button)findViewById(R.id.createActBtn);
+        //when button clicked
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //check if login correct
+                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin123")){
+                    //take to new welcome page
+                    Intent intent=new Intent(MainActivity.this,welcomePage.class);
+                    startActivity(intent);// should take to welcome page
+                }//will create else if, if login credentials dont match
+            }
+        });
+        //when button clicked
+        createActBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
+            @Override
+            public void onClick(View view) {
+                    //take to new create account page
+                    Intent intent=new Intent(MainActivity.this,createAccount.class);
+                    startActivity(intent);// should take to create account
+
+            }
+        });
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
