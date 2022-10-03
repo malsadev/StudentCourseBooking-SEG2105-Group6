@@ -19,12 +19,22 @@ public class createAccount extends AppCompatActivity {
         EditText createUser = (EditText)  findViewById(R.id.createUser);
         EditText createPw = (EditText)findViewById(R.id.createPw);
         Button createBtn = (Button)findViewById(R.id.createBtn);
-
+        Button createBackBtn=(Button) findViewById(R.id.createBackBtn);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(createAccount.this,MainActivity.class);
                 startActivity(intent);// should take to main sign in page
+            }
+        });
+
+        createBackBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
+            @Override
+            public void onClick(View view) {
+                //take to new create account page
+                Intent intent=new Intent(createAccount.this,MainActivity.class);
+                startActivity(intent);// should take to create account
+
             }
         });
     }

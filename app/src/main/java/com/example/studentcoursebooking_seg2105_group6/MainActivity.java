@@ -44,12 +44,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //check if login correct
-                if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin123")){
-                    //take to new welcome page
-                    Intent intent=new Intent(MainActivity.this,welcomePage.class);
-                    startActivity(intent);// should take to welcome page
+                //take to new welcome page
+                Intent intent=new Intent(MainActivity.this,welcomePage.class);
+                startActivity(intent);// should take to welcome page
                 }//will create else if, if login credentials dont match
-            }
+
         });
         //when button clicked
         createActBtn.setOnClickListener(new View.OnClickListener() {//when button clicked

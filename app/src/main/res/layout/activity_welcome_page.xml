@@ -11,7 +11,7 @@
         android:id="@+id/welcomeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WELCOME "
+        android:text="WELCOME"
         android:textColor="#8A49BF"
         android:textSize="40sp"
         android:textStyle="bold"
