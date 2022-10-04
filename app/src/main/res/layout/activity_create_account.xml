@@ -164,4 +164,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".9"/>
 
+    <Button
+        android:id="@+id/createBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createPw"
+        android:text="BACK"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:backgroundTint="#2C8B48BE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".97" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
