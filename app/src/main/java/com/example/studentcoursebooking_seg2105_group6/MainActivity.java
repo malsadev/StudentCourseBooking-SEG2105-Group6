@@ -3,28 +3,26 @@ package com.example.studentcoursebooking_seg2105_group6;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+
+import com.example.studentcoursebooking_seg2105_group6.models.User;
+import com.example.studentcoursebooking_seg2105_group6.security.AuthController;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //function find id of button on screen
         // R represents list of all ressources that exists in application
         // sub class id, find id associated with button 1
@@ -39,69 +38,71 @@ public class MainActivity extends AppCompatActivity {
         EditText password = (EditText)findViewById(R.id.password);
         Button loginBtn = (Button)findViewById(R.id.loginBtn);
         Button createActBtn=(Button)findViewById(R.id.createActBtn);
+
+        AuthController authController = new AuthController();
+
         //when button clicked
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //check if login correct
-                //take to new welcome page
-                Intent intent=new Intent(MainActivity.this,welcomePage.class);
-                startActivity(intent);// should take to welcome page
-                }//will create else if, if login credentials dont match
 
+                User loginUser =new User(username.getText().toString(), password.getText().toString());
+                Query loginQuery = authController.login(loginUser);
+
+                loginQuery.get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    if (task.getResult().isEmpty()) { //credentials now found in db
+                                        username.setText("");
+                                        password.setText("");
+                                        AlertDialog alert = createLoginErrorDialog();
+                                        alert.show();
+                                    }
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                        Intent intent = new Intent(MainActivity.this, WelcomePage.class);
+                                        intent.putExtra("signedUser" , document.toObject(User.class));
+                                        startActivity(intent);
+                                    }
+
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+                }
         });
+
+
         //when button clicked
         createActBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
             public void onClick(View view) {
                     //take to new create account page
-                    Intent intent=new Intent(MainActivity.this,createAccount.class);
+                    Intent intent=new Intent(MainActivity.this,CreateAccount.class);
                     startActivity(intent);// should take to create account
 
             }
         });
 
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+    }
 
-        // check db write
-        Map<String, Object> user = new HashMap<>();
-        user.put("user", "mustafa");
-        user.put("password", "1234");
-        user.put("role", "student");
-
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
+    private AlertDialog createLoginErrorDialog(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+        builder1.setMessage("Please enter valid credentials");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
                     }
                 });
+        AlertDialog alert = builder1.create();
 
-
-        //check db read
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
+        return alert;
     }
 }

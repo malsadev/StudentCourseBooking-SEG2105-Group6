@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentCourseBookingSEG2105Group6">
         <activity
-            android:name=".createAccount"
+            android:name=".CreateAccount"
             android:parentActivityName=".MainActivity"
             android:exported="false">
             <meta-data
@@ -18,7 +18,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".welcomePage"
+            android:name=".WelcomePage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
