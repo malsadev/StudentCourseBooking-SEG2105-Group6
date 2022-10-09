@@ -32,7 +32,7 @@ public class CreateAccount extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(CreateAccount.this,MainActivity.class);
+                Intent intent=new Intent(CreateAccount.this,MainActivity.class); //back btrn
 
                 User userRegistration = new User(createUser.getText().toString(), createPw.getText().toString(), userType.getText().toString(), createName.getText().toString());
                 authController.signUp(userRegistration);
