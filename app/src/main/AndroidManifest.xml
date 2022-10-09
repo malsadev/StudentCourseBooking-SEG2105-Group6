@@ -10,9 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentCourseBookingSEG2105Group6">
         <activity
-            android:name=".CreateAccount"
-            android:parentActivityName=".MainActivity"
+            android:name=".ViewCourse"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CreateCourse"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CreateAccount"
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

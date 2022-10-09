@@ -30,7 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTxt"
+        />
 
     <Button
         android:id="@+id/createCourseBtn"
@@ -47,7 +48,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".35" />
+        app:layout_constraintVertical_bias=".35"
+        android:enabled="true"
+        />
 
     <Button
         android:id="@+id/viewCourseBtn"
@@ -64,7 +67,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".48" />
+        app:layout_constraintVertical_bias=".48"
+        android:enabled="true" />
 
     <Button
         android:id="@+id/welcomeBackBtn"
