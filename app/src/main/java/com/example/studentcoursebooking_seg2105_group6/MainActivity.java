@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import com.example.studentcoursebooking_seg2105_group6.models.Admin;
+import com.example.studentcoursebooking_seg2105_group6.models.Course;
 import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.example.studentcoursebooking_seg2105_group6.security.AuthController;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         Button createActBtn=(Button)findViewById(R.id.createActBtn);
 
         AuthController authController = new AuthController();
+
+//        Admin admin = new Admin();
+//        admin.createCourse(new Course());
+//        authController.login(admin);
 
         //when button clicked
         loginBtn.setOnClickListener(new View.OnClickListener() {
