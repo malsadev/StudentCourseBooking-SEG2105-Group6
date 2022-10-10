@@ -1,4 +1,4 @@
-package com.example.studentcoursebooking_seg2105_group6.security;
+package com.example.studentcoursebooking_seg2105_group6.controllers.security;
 
 import static android.content.ContentValues.TAG;
 

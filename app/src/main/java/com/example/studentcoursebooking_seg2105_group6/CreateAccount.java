@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.studentcoursebooking_seg2105_group6.models.User;
-import com.example.studentcoursebooking_seg2105_group6.security.AuthController;
+import com.example.studentcoursebooking_seg2105_group6.controllers.security.AuthController;
 
 public class CreateAccount extends AppCompatActivity {
 

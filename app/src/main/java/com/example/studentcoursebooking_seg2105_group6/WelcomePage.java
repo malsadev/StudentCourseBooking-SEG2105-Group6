@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.studentcoursebooking_seg2105_group6.models.User;
 
 public class WelcomePage extends AppCompatActivity {
+    private static String adminRole = "admin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,8 @@ public class WelcomePage extends AppCompatActivity {
         Button createCourseBtn=(Button)findViewById(R.id.createCourseBtn);
         Button viewCourseBtn=(Button)findViewById(R.id.viewCourseBtn);
 
-        //to enable buttons if admin use
-        //createCourseBtn.setEnabled(condition);
-        //viewCourseBtn.setEnabled(condition);
+       createCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
+       viewCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
 
         //back button
         welcomeBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +45,7 @@ public class WelcomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomePage.this, CreateCourse.class);
+                intent.putExtra("signedUser" , signedUser);
                 startActivity(intent);// should take to create account
             }
         });
