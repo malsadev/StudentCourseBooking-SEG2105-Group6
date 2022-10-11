@@ -8,7 +8,7 @@ public class User implements Serializable {
     private String password;
     private String name;
 
-    //serializaation for cross-activity context transfer
+    //serialization for cross-activity context transfer
     public User() {
 
     }
