@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class Course implements Serializable {
     private String courseName;
     private String courseCode;
-    private String courseDescription;
+    private String courseDescription="";
 
     public Course(){
 
     }
 
-    public Course(String courseName,String courseCode){
+    public Course(String courseName, String courseCode){
         this.courseName = courseName;
         this.courseCode = courseCode;
     }
@@ -31,5 +31,13 @@ public class Course implements Serializable {
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
+    }
+
+    public String getCourseDescription() {
+        return courseDescription;
+    }
+
+    public void setCourseDescription(String description) {
+        courseDescription = description;
     }
 }
