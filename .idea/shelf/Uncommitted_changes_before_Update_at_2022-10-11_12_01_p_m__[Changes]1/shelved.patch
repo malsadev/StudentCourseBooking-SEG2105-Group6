@@ -1,0 +1,57 @@
+Index: app/src/main/java/com/example/studentcoursebooking_seg2105_group6/CreateCourse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studentcoursebooking_seg2105_group6;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\n\r\npublic class CreateCourse extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_create_course);\r\n\r\n        Button createCourseBackBtn=(Button)findViewById(R.id.createCourseBackBtn);\r\n        Button createdCourseBtn=(Button)findViewById(R.id.createdCourseBtn);\r\n\r\n        //take back to welcome page after course creation\r\n        createdCourseBtn.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(CreateCourse.this, WelcomePage.class);\r\n                startActivity(intent);// should take to Main account\r\n            }\r\n        });\r\n\r\n        createCourseBackBtn.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent intent = new Intent(CreateCourse.this, WelcomePage.class);\r\n                startActivity(intent);// should take to Welcome account\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/CreateCourse.java b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/CreateCourse.java
+--- a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/CreateCourse.java	
++++ b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/CreateCourse.java	
+@@ -6,6 +6,9 @@
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
++import android.widget.EditText;
++
++import com.example.studentcoursebooking_seg2105_group6.models.Course;
+ 
+ public class CreateCourse extends AppCompatActivity {
+ 
+@@ -14,6 +17,8 @@
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_create_course);
+ 
++        EditText courseName=(EditText)findViewById(R.id.courseName);
++        EditText courseCode=(EditText)findViewById(R.id.courseCode);
+         Button createCourseBackBtn=(Button)findViewById(R.id.createCourseBackBtn);
+         Button createdCourseBtn=(Button)findViewById(R.id.createdCourseBtn);
+ 
+@@ -21,6 +26,8 @@
+         createdCourseBtn.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
++                Course course = new Course(courseName.getText().toString(), courseCode.getText().toString());
++
+                 Intent intent = new Intent(CreateCourse.this, WelcomePage.class);
+                 startActivity(intent);// should take to Main account
+             }
+Index: app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studentcoursebooking_seg2105_group6.models;\r\n\r\nimport java.io.Serializable;\r\n\r\npublic class User implements Serializable {\r\n    private String username;\r\n    private String role;\r\n    private String password;\r\n    private String name;\r\n\r\n    //serializaation for cross-activity context transfer\r\n    public User() {\r\n\r\n    }\r\n\r\n    public User(String username, String password) {\r\n        this(username, password, \"\", \"\");\r\n    }\r\n\r\n    public User(String username, String password, String role, String name){\r\n        this.username = username;\r\n        this.password = password;\r\n        this.role = role;\r\n        this.name = name;\r\n    }\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n\r\n    public void setUsername(String username) {\r\n        this.username = username;\r\n    }\r\n\r\n    public String getRole() {\r\n        return role;\r\n    }\r\n\r\n    public void setRole(String role) {\r\n        this.role = role;\r\n    }\r\n\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public void setPassword(String password) {\r\n        this.password = password;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/User.java b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/User.java
+--- a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/User.java	
++++ b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/User.java	
+@@ -8,7 +8,7 @@
+     private String password;
+     private String name;
+ 
+-    //serializaation for cross-activity context transfer
++    //serialization for cross-activity context transfer
+     public User() {
+ 
+     }

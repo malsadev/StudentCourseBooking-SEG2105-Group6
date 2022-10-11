@@ -1,0 +1,86 @@
+Index: app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/Course.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studentcoursebooking_seg2105_group6.models;\r\n\r\npublic class Course {\r\n    String courseName;\r\n    int courseCode;\r\n\r\n    public Course(){\r\n\r\n    }\r\n\r\n    public Course(String course){\r\n        this.courseName = course;\r\n    }\r\n    public int getCode(int code){\r\n        this.courseCode = code;\r\n        return code;\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/Course.java b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/Course.java
+--- a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/Course.java	
++++ b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/models/Course.java	
+@@ -2,19 +2,21 @@
+ 
+ public class Course {
+     String courseName;
+-    int courseCode;
+-
+-    public Course(){
++    String courseCode;
++    String courseDescription;
+ 
++    public Course(String course, String code, String description){
++        courseName = course;
++        courseCode = code;
++        courseDescription = description;
+     }
+ 
+-    public Course(String course){
+-        this.courseName = course;
+-    }
+-    public int getCode(int code){
+-        this.courseCode = code;
+-        return code;
+-    }
++    public String getCode(){return courseCode;}
++    public void setCode(String code){courseCode=code;}
++    public String getName(){return courseName;}
++    public void setName(String name){courseName=name;}
++    public String getDescription(){return courseDescription;}
++    public void setDescription(String description){courseDescription=description;}
+ 
+ 
+ 
+Index: app/src/main/java/com/example/studentcoursebooking_seg2105_group6/security/AuthController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.studentcoursebooking_seg2105_group6.security;\r\n\r\nimport static android.content.ContentValues.TAG;\r\n\r\nimport android.util.Log;\r\n\r\nimport androidx.annotation.NonNull;\r\n\r\nimport com.example.studentcoursebooking_seg2105_group6.models.User;\r\nimport com.fasterxml.jackson.databind.ObjectMapper;\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.OnFailureListener;\r\nimport com.google.android.gms.tasks.OnSuccessListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.firebase.firestore.DocumentReference;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\nimport com.google.firebase.firestore.Query;\r\nimport com.google.firebase.firestore.QueryDocumentSnapshot;\r\nimport com.google.firebase.firestore.QuerySnapshot;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n\r\npublic class AuthController {\r\n\r\n    private static FirebaseFirestore db;\r\n\r\n    public AuthController() {\r\n        this.db = FirebaseFirestore.getInstance();\r\n    }\r\n\r\n\r\n    public Query login(User user) {\r\n        return db.collection(\"users\")\r\n                .whereEqualTo(\"username\", user.getUsername())\r\n                .whereEqualTo(\"password\" , user.getPassword());\r\n\r\n    }\r\n\r\n    public void signUp(User user) {\r\n        ObjectMapper mapper = new ObjectMapper();\r\n        Map<String, Object> userDoc = mapper.convertValue(user, Map.class);\r\n\r\n        // Add a new user to db\r\n        db.collection(\"users\")\r\n                .add(userDoc)\r\n                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {\r\n                    @Override\r\n                    public void onSuccess(DocumentReference documentReference) {\r\n                        Log.d(TAG, \"DocumentSnapshot added with ID: \" + documentReference.getId());\r\n                    }\r\n                })\r\n                .addOnFailureListener(new OnFailureListener() {\r\n                    @Override\r\n                    public void onFailure(@NonNull Exception e) {\r\n                        Log.w(TAG, \"Error adding document\", e);\r\n                    }\r\n                });\r\n\r\n\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/security/AuthController.java b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/security/AuthController.java
+--- a/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/security/AuthController.java	
++++ b/app/src/main/java/com/example/studentcoursebooking_seg2105_group6/security/AuthController.java	
+@@ -3,9 +3,13 @@
+ import static android.content.ContentValues.TAG;
+ 
+ import android.util.Log;
++import android.widget.Toast;
+ 
+ import androidx.annotation.NonNull;
+ 
++import com.example.studentcoursebooking_seg2105_group6.CreateCourse;
++import com.example.studentcoursebooking_seg2105_group6.MainActivity;
++import com.example.studentcoursebooking_seg2105_group6.models.Course;
+ import com.example.studentcoursebooking_seg2105_group6.models.User;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.google.android.gms.tasks.OnCompleteListener;
+@@ -57,7 +61,19 @@
+                         Log.w(TAG, "Error adding document", e);
+                     }
+                 });
+-
+-
++    }
++    public void createCourse(Course course){
++        Map<String, Object> courseData = new Hashmap<>();
++        courseData.put("courseCode", course.getCode());
++        courseData.put("courseDescription", course.getDescription());
++        courseData.put("courseName", course.getName());
++        db.collection("courses").add(courseData).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
++            @Override
++            public void onComplete(@NonNull Task<DocumentReference> task) {
++                if (task.isSuccessful()){
++                    Toast.makeText(CreateCourse.this, )
++                }
++            }
++        })
+     }
+ }
