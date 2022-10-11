@@ -15,10 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import com.example.studentcoursebooking_seg2105_group6.models.Admin;
-import com.example.studentcoursebooking_seg2105_group6.models.Course;
 import com.example.studentcoursebooking_seg2105_group6.models.User;
-import com.example.studentcoursebooking_seg2105_group6.security.AuthController;
+import com.example.studentcoursebooking_seg2105_group6.controllers.security.AuthController;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.Query;
@@ -33,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //function find id of button on screen
-        // R represents list of all ressources that exists in application
-        // sub class id, find id associated with button 1
         EditText username = (EditText)  findViewById(R.id.username);
         EditText password = (EditText)findViewById(R.id.password);
         Button loginBtn = (Button)findViewById(R.id.loginBtn);
@@ -43,11 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         AuthController authController = new AuthController();
 
-//        Admin admin = new Admin();
-//        admin.createCourse(new Course());
-//        authController.login(admin);
-
-        //when button clicked
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //when button clicked
         createActBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
             public void onClick(View view) {
