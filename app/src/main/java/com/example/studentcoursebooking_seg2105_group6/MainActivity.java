@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         AuthController authController = new AuthController();
 
-//        Admin admin = new Admin();
-//        admin.createCourse(new Course());
-//        authController.login(admin);
-
         //when button clicked
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override

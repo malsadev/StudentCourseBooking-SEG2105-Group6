@@ -1,6 +1,7 @@
 package com.example.studentcoursebooking_seg2105_group6.models;
+import java.io.Serializable;
 
-public class Course {
+public class Course implements Serializable {
     String courseName;
     int courseCode;
 
@@ -8,12 +9,12 @@ public class Course {
 
     }
 
-    public Course(String course){
-        this.courseName = course;
+    public Course(String courseName, int courseCode){
+        this.courseName = courseName;
+        this.courseCode = courseCode;
     }
-    public int getCode(int code){
-        this.courseCode = code;
-        return code;
+    public int getCode(){
+        return this.courseCode;
     }
 
 
