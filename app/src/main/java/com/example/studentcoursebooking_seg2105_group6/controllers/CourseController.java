@@ -41,4 +41,28 @@ public class CourseController {
     }
 
 
+//    delete a course controller...Myrtille
+    public void deleteCourse(Course course){
+        db.collection(getCourseCode())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Success Delete Course", "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Error deleting document", e);
+                    }
+                });
+    }
+
+    //Method for access the course code
+    public String getCourseCode(){
+        return this.getCourseCode();
+    }
+
+
 }
