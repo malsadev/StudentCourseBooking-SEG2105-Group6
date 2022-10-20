@@ -43,8 +43,8 @@ public class CourseController {
 
 //    delete a course controller...Myrtille
     public void deleteCourse(Course course){
-        db.collection(getCourseCode())
-                .delete()
+        db.collection("courseCode")
+                .delete("courseCode")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -61,7 +61,9 @@ public class CourseController {
 
     //Method for access the course code
     public String getCourseCode(){
-        return this.getCourseCode();
+        Course courseToDelete = new Course();
+        String courseCode = courseToDelete.getCourseCode();
+        return courseCode;
     }
 
 
