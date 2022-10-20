@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
 
+
+
 public class CourseController {
     private static FirebaseFirestore db;
     public CourseController(){db=FirebaseFirestore.getInstance();}
@@ -43,8 +45,8 @@ public class CourseController {
 
 //    delete a course controller...Myrtille
     public void deleteCourse(Course course){
-        db.collection("courseCode")
-                .delete("courseCode")
+        db.collection("courses").document("courseCode")
+                .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -60,11 +62,22 @@ public class CourseController {
     }
 
     //Method for access the course code
-    public String getCourseCode(){
+    public String CourseCode(){
         Course courseToDelete = new Course();
         String courseCode = courseToDelete.getCourseCode();
         return courseCode;
     }
+
+    //I found this online, and I think it's the right code to use - Myrtille
+//    import { doc, updateDoc, deleteField } from "firebase/firestore";
+//
+//const userRef = doc(db, "users/dWE72sOcV1CRuA0ngRt5");
+//
+//    // Remove "age" and "sex" fields from the document
+//    await updateDoc(userRef, {
+//        "age": deleteField(),
+//                "sex": deleteField()
+//    });
 
 
 }
