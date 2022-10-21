@@ -11,5 +11,13 @@
         android:id="@+id/idLVCourses"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
+    <Button
+        android:id="@+id/courseListBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/idLVCourses"
+        android:text="BACK"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"
+        android:textStyle="bold" />
 </RelativeLayout>

@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,6 +37,32 @@ public class ViewCourse extends AppCompatActivity {
         coursesLV = findViewById(R.id.idLVCourses);
         courseArrayList = new ArrayList<>();
 
+        /*attempts, not sure if at right place in code
+        coursesLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int selected, long id) {
+                //not sure if it works but idea making any selected item take
+                //to the single course view page
+                if(selected<= courseArrayList.size()){
+                    startActivity(new Intent(ViewCourse.this, ViewCourseDetail.class));
+                }
+                //COMMENT OUT
+                // if want to do it individually
+                if(selected==0){
+                    //first course on list
+                    startActivity(new Intent(ViewCourse.this, ViewCourseDetail.class));
+                }
+                else if(selected==1){
+                    //second item on list
+                    startActivity(new Intent(ViewCourse.this, ViewCourseDetail.class));
+                }
+                //comment out the ifs
+
+            }
+        });
+        */
+
+
         // initializing our variable for firebase
         // firestore and getting its instance.
         db = FirebaseFirestore.getInstance();
@@ -44,17 +70,19 @@ public class ViewCourse extends AppCompatActivity {
         // here we are calling a method
         // to load data in our list view.
         loadDatainListview();
+        /*
+        //back button attempt, not sure if it works, can uncomment it to test
+        Button viewCourseBackBtn=(Button)findViewById(R.id.courseListBackBtn);
 
+          viewCourseBackBtn.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  Intent intent = new Intent(ViewCourse.this, WelcomePage.class);
+                  startActivity(intent);// should take to Welcome account
+              }
+          });
 
-//        Button viewCourseBackBtn=(Button)findViewById(R.id.viewCourseBackBtn);
-//
-//        viewCourseBackBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(ViewCourse.this, WelcomePage.class);
-//                startActivity(intent);// should take to Welcome account
-//            }
-//        });
+         */
     }
 
     private void loadDatainListview() {
