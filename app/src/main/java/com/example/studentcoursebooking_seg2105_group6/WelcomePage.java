@@ -28,9 +28,11 @@ public class WelcomePage extends AppCompatActivity {
         Button welcomeBackBtn=(Button)findViewById(R.id.welcomeBackBtn);
         Button createCourseBtn=(Button)findViewById(R.id.createCourseBtn);
         Button viewCourseBtn=(Button)findViewById(R.id.viewCourseBtn);
+        Button viewUserBtn = (Button) findViewById(R.id.viewUsersBtn);
 
        createCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
        viewCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
+       viewUserBtn.setEnabled(signedUser.getRole().equals(adminRole));
 
         //back button
         welcomeBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +55,16 @@ public class WelcomePage extends AppCompatActivity {
         viewCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WelcomePage.this, ViewCourse.class);
+                Intent intent = new Intent(WelcomePage.this, ViewCourseList.class);
+                startActivity(intent);// should take to create account
+            }
+        });
+
+
+        viewUserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomePage.this, ViewAccountList.class);
                 startActivity(intent);// should take to create account
             }
         });

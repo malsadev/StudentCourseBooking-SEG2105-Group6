@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewCourse extends AppCompatActivity {
+public class ViewCourseList extends AppCompatActivity {
 
     ListView coursesLV;
     ArrayList<Course> courseArrayList;
@@ -82,14 +82,14 @@ public class ViewCourse extends AppCompatActivity {
                             }
                             Log.d("", courseArrayList.toString());
                             // after that we are passing our array list to our adapter class.
-                            CourseAdapter adapter = new CourseAdapter(ViewCourse.this, courseArrayList);
+                            CourseAdapter adapter = new CourseAdapter(ViewCourseList.this, courseArrayList);
 
                             // after passing this array list to our adapter
                             // class we are setting our adapter to our list view.
                             coursesLV.setAdapter(adapter);
                         } else {
                             // if the snapshot is empty we are displaying a toast message.
-                            Toast.makeText(ViewCourse.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewCourseList.this, "No data found in Database", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -97,7 +97,7 @@ public class ViewCourse extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         // we are displaying a toast message
                         // when we get any error from Firebase.
-                        Toast.makeText(ViewCourse.this, "Fail to load data..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewCourseList.this, "Fail to load data..", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
