@@ -37,30 +37,7 @@ public class ViewCourse extends AppCompatActivity {
         coursesLV = findViewById(R.id.idLVCourses);
         courseArrayList = new ArrayList<>();
 
-        /*attempts, not sure if at right place in code
-        coursesLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int selected, long id) {
-                //not sure if it works but idea making any selected item take
-                //to the single course view page
-                if(selected<= courseArrayList.size()){
-                    startActivity(new Intent(ViewCourse.this, ViewCourseDetail.class));
-                }
-                //COMMENT OUT
-                // if want to do it individually
-                if(selected==0){
-                    //first course on list
-                    startActivity(new Intent(ViewCourse.this, ViewCourseDetail.class));
-                }
-                else if(selected==1){
-                    //second item on list
-                    startActivity(new Intent(ViewCourse.this, ViewCourseDetail.class));
-                }
-                //comment out the ifs
 
-            }
-        });
-        */
 
 
         // initializing our variable for firebase
