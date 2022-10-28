@@ -3,6 +3,7 @@ package com.example.studentcoursebooking_seg2105_group6.adapters;
 import static java.security.AccessController.getContext;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.studentcoursebooking_seg2105_group6.MainActivity;
 import com.example.studentcoursebooking_seg2105_group6.R;
+import com.example.studentcoursebooking_seg2105_group6.ViewCourseDetail;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
 
 import java.util.ArrayList;
@@ -52,16 +55,17 @@ public class CourseAdapter extends ArrayAdapter<Course> {
 
         // in below line we are using Picasso to
         // load image from URL in our Image VIew.
-       courseCodeText.setText(course.getCourseCode());
+        courseCodeText.setText(course.getCourseCode());
 
         // below line is use to add item click listener
         // for our item of list view.
         listitemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // on the item click on our list view.
-                // we are displaying a toast message.
+
                 Toast.makeText(getContext(), "Item clicked is : " + course.getCourseName(), Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getContext(), ViewCourseDetail.class);
+                getContext().startActivity(intent);
             }
         });
         return listitemView;
