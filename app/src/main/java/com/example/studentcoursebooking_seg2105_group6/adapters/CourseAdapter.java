@@ -3,6 +3,7 @@ package com.example.studentcoursebooking_seg2105_group6.adapters;
 import static java.security.AccessController.getContext;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.studentcoursebooking_seg2105_group6.R;
+import com.example.studentcoursebooking_seg2105_group6.WelcomePage;
+import com.example.studentcoursebooking_seg2105_group6.controllers.CourseController;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.User;
 
 import java.util.ArrayList;
 
 public class CourseAdapter extends ArrayAdapter<Course> {
 
+    CourseController courseController;
+    User signedUser;
+
     // constructor for our list view adapter.
-    public CourseAdapter(@NonNull Context context, ArrayList<Course> courseArrayList) {
+    public CourseAdapter(@NonNull Context context, ArrayList<Course> courseArrayList, User signedUser) {
         super(context, 0, courseArrayList);
+        this.courseController = new CourseController();
+        this.signedUser = signedUser;
+
     }
 
     @NonNull
@@ -61,7 +71,12 @@ public class CourseAdapter extends ArrayAdapter<Course> {
             public void onClick(View v) {
                 // on the item click on our list view.
                 // we are displaying a toast message.
-                Toast.makeText(getContext(), "Item clicked is : " + course.getCourseName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Course deleted is : " + course.getCourseName(), Toast.LENGTH_SHORT).show();
+                courseController.deleteCourse(course);
+                Intent intent = new Intent(getContext(), WelcomePage.class);
+                intent.putExtra("signedUser" , signedUser);
+                getContext().startActivity(intent);
+
             }
         });
         return listitemView;
