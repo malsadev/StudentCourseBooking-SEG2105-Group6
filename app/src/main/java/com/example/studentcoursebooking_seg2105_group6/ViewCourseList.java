@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.studentcoursebooking_seg2105_group6.adapters.CourseAdapter;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,11 +29,14 @@ public class ViewCourseList extends AppCompatActivity {
     ListView coursesLV;
     ArrayList<Course> courseArrayList;
     FirebaseFirestore db;
+    User signedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courselist_view);
+
+
 
         coursesLV = findViewById(R.id.idLVCourses);
         courseArrayList = new ArrayList<>();
@@ -82,7 +86,8 @@ public class ViewCourseList extends AppCompatActivity {
                             }
                             Log.d("", courseArrayList.toString());
                             // after that we are passing our array list to our adapter class.
-                            CourseAdapter adapter = new CourseAdapter(ViewCourseList.this, courseArrayList);
+                            signedUser = (User) getIntent().getSerializableExtra("signedUser");
+                            CourseAdapter adapter = new CourseAdapter(ViewCourseList.this, courseArrayList, signedUser);
 
                             // after passing this array list to our adapter
                             // class we are setting our adapter to our list view.

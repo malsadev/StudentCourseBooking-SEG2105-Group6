@@ -25,6 +25,7 @@ public class ViewAccountList extends AppCompatActivity {
     ListView coursesLV;
     ArrayList<User> userArrayList;
     FirebaseFirestore db;
+    User signedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,8 @@ public class ViewAccountList extends AppCompatActivity {
                             }
                             Log.d("", userArrayList.toString());
                             // after that we are passing our array list to our adapter class.
-                            AccountAdapter adapter = new AccountAdapter(ViewAccountList.this, userArrayList);
+                            signedUser = (User) getIntent().getSerializableExtra("signedUser");
+                            AccountAdapter adapter = new AccountAdapter(ViewAccountList.this, userArrayList, signedUser);
 
                             // after passing this array list to our adapter
                             // class we are setting our adapter to our list view.

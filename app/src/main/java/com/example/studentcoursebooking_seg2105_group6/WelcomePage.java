@@ -56,6 +56,7 @@ public class WelcomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomePage.this, ViewCourseList.class);
+                intent.putExtra("signedUser" , signedUser);
                 startActivity(intent);// should take to create account
             }
         });
@@ -65,6 +66,7 @@ public class WelcomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomePage.this, ViewAccountList.class);
+                intent.putExtra("signedUser" , signedUser);
                 startActivity(intent);// should take to create account
             }
         });
