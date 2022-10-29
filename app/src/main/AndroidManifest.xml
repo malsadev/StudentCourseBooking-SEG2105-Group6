@@ -16,7 +16,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ViewCourse"
+            android:name=".ViewCourseList"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

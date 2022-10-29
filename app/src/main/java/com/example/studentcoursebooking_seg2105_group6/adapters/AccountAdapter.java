@@ -15,15 +15,20 @@ import androidx.annotation.Nullable;
 import com.example.studentcoursebooking_seg2105_group6.MainActivity;
 import com.example.studentcoursebooking_seg2105_group6.R;
 import com.example.studentcoursebooking_seg2105_group6.WelcomePage;
+import com.example.studentcoursebooking_seg2105_group6.controllers.AccountController;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
 import com.example.studentcoursebooking_seg2105_group6.models.User;
 
 import java.util.ArrayList;
 
 public class AccountAdapter extends ArrayAdapter<User> {
+    User signedUser;
+    AccountController accountController;
     // constructor for our list view adapter.
-    public AccountAdapter(@NonNull Context context, ArrayList<User> userArrayList) {
+    public AccountAdapter(@NonNull Context context, ArrayList<User> userArrayList, User signedUser) {
         super(context, 0, userArrayList);
+        this.accountController = new AccountController();
+        this.signedUser = signedUser;
     }
 
     @NonNull
@@ -59,9 +64,11 @@ public class AccountAdapter extends ArrayAdapter<User> {
             public void onClick(View v) {
                 // on the item click on our list view.
                 // we are displaying a toast message.
-                Toast.makeText(getContext(), "Item clicked is : " + user.getUsername(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                getContext().startActivity(intent);// should take to create account
+                Toast.makeText(getContext(), "User deleted is : " + user.getUsername(), Toast.LENGTH_SHORT).show();
+                accountController.deleteUser(user);
+                Intent intent = new Intent(getContext(), WelcomePage.class);
+                intent.putExtra("signedUser" , signedUser);
+                getContext().startActivity(intent);
             }
         });
         return listitemView;
