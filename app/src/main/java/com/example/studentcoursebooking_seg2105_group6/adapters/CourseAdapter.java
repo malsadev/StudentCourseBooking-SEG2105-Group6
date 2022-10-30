@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.studentcoursebooking_seg2105_group6.R;
+import com.example.studentcoursebooking_seg2105_group6.ViewCourseDetail;
 import com.example.studentcoursebooking_seg2105_group6.WelcomePage;
 import com.example.studentcoursebooking_seg2105_group6.controllers.CourseController;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
@@ -27,6 +29,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
 
     CourseController courseController;
     User signedUser;
+
 
     // constructor for our list view adapter.
     public CourseAdapter(@NonNull Context context, ArrayList<Course> courseArrayList, User signedUser) {
@@ -54,7 +57,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
         // initializing our UI components of list view item.
         TextView courseCodeText = listitemView.findViewById(R.id.idTVtext);
         TextView courseNameText = listitemView.findViewById(R.id.idIVcourseName);
-
+        TextView changeCourseNameTxt = listitemView.findViewById(R.id.changeCourseNameTxt);
         // after initializing our items we are
         // setting data to our view.
         // below line is use to set data to our text view.
@@ -72,10 +75,15 @@ public class CourseAdapter extends ArrayAdapter<Course> {
                 // on the item click on our list view.
                 // we are displaying a toast message.
                 Toast.makeText(getContext(), "Course deleted is : " + course.getCourseName(), Toast.LENGTH_SHORT).show();
-                courseController.deleteCourse(course);
-                Intent intent = new Intent(getContext(), WelcomePage.class);
+                //courseController.deleteCourse(course);
+                Intent intent = new Intent(getContext(), ViewCourseDetail.class);
                 intent.putExtra("signedUser" , signedUser);
                 getContext().startActivity(intent);
+                //text name change *** doesnt work yet****************************
+                //changeCourseNameTxt.setText(course.getCourseName());
+                //changeCourseNameTxt.setText(course.getCourseCode());
+                //changeCourseNameTxt.setText(course.getCourseDescription());
+
 
             }
         });
