@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.studentcoursebooking_seg2105_group6.adapters.CourseAdapter;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,16 +24,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewCourse extends AppCompatActivity {
+public class ViewCourseList extends AppCompatActivity {
 
     ListView coursesLV;
     ArrayList<Course> courseArrayList;
     FirebaseFirestore db;
+    User signedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courselist_view);
+
+
 
         coursesLV = findViewById(R.id.idLVCourses);
         courseArrayList = new ArrayList<>();
@@ -82,14 +86,15 @@ public class ViewCourse extends AppCompatActivity {
                             }
                             Log.d("", courseArrayList.toString());
                             // after that we are passing our array list to our adapter class.
-                            CourseAdapter adapter = new CourseAdapter(ViewCourse.this, courseArrayList);
+                            signedUser = (User) getIntent().getSerializableExtra("signedUser");
+                            CourseAdapter adapter = new CourseAdapter(ViewCourseList.this, courseArrayList, signedUser);
 
                             // after passing this array list to our adapter
                             // class we are setting our adapter to our list view.
                             coursesLV.setAdapter(adapter);
                         } else {
                             // if the snapshot is empty we are displaying a toast message.
-                            Toast.makeText(ViewCourse.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewCourseList.this, "No data found in Database", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -97,7 +102,7 @@ public class ViewCourse extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         // we are displaying a toast message
                         // when we get any error from Firebase.
-                        Toast.makeText(ViewCourse.this, "Fail to load data..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewCourseList.this, "Fail to load data..", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
