@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.User;
 
 public class ViewCourseDetail extends AppCompatActivity {
 
@@ -19,7 +20,8 @@ public class ViewCourseDetail extends AppCompatActivity {
 
         //gets course data based on what was selected from the course list view
         Intent i = getIntent();
-        Course thisCourse = (Course)(i.getSerializableExtra("courseDetails"));
+        Course thisCourse = (Course)(i.getSerializableExtra("course"));
+        User signedUser = (User) i.getSerializableExtra("signedUser");
 
         TextView courseTitle = findViewById(R.id.changeCourseNameTxt);
         TextView courseCode = findViewById(R.id.changeCourseCodeTxt);
@@ -37,6 +39,7 @@ public class ViewCourseDetail extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ViewCourseDetail.this, EditCourse.class);
                 intent.putExtra("course", thisCourse);
+                intent.putExtra("signedUser", signedUser);
                 startActivity(intent);// should take to edit course
             }
         });
@@ -45,6 +48,8 @@ public class ViewCourseDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewCourseDetail.this, ViewCourseList.class);
+                intent.putExtra("course", thisCourse);
+                intent.putExtra("signedUser", signedUser);
                 startActivity(intent);// should take to create account
             }
         });

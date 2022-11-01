@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.studentcoursebooking_seg2105_group6.controllers.CourseController;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.google.firebase.firestore.DocumentReference;
 
 public class EditCourse extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class EditCourse extends AppCompatActivity {
 
         //get course from course view activity
         Course ogCourse = (Course)i.getSerializableExtra("course");
+        User signedUser = (User) i.getSerializableExtra("signedUser");
 
         EditText courseName = findViewById(R.id.courseNameEdit);
         EditText courseCode = findViewById(R.id.courseCodeEdit);
@@ -43,6 +45,8 @@ public class EditCourse extends AppCompatActivity {
                 controller.updateCourse(ogCourse, newCourse);
                 Toast.makeText(EditCourse.this, "Course Updated Successfully", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(EditCourse.this, ViewCourseDetail.class);
+                intent.putExtra("signedUser", signedUser);
+                intent.putExtra("course", newCourse);
                 startActivity(intent);// should take to view course details
             }
         });
@@ -52,7 +56,8 @@ public class EditCourse extends AppCompatActivity {
             public void onClick(View view) {
                 controller.deleteCourse(ogCourse);
                 Toast.makeText(EditCourse.this, "Course Successfully Deleted", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(EditCourse.this, ViewCourseDetail.class);
+                Intent intent = new Intent(EditCourse.this, WelcomePage.class);
+                intent.putExtra("signedUser", signedUser);
                 startActivity(intent);// should take to view course details
             }
         });
@@ -61,6 +66,8 @@ public class EditCourse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EditCourse.this, ViewCourseDetail.class);
+                intent.putExtra("signedUser", signedUser);
+                intent.putExtra("course", ogCourse);
                 startActivity(intent);// should take to view course details
             }
         });

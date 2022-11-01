@@ -74,6 +74,7 @@ public class CourseController {
     }
 
     public void deleteCourse(Course course) {
+
         db.collection("courses")
                 .whereEqualTo("courseCode", course.getCourseCode())
                 .get()
@@ -83,10 +84,12 @@ public class CourseController {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                System.out.println("found course" + document.getId());
                                 db.collection("courses").document(document.getId())
                                         .delete()
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
                                         .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
