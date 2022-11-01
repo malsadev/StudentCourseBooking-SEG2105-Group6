@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Document;
+
 import java.util.Map;
 
 public class CourseController {
@@ -44,7 +46,35 @@ public class CourseController {
 
     }
 
+    public void updateCourse(Course ogCourse, Course newCourse ){
+        db.collection("courses")
+                .whereEqualTo("courseCode", ogCourse.getCourseCode())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                db.collection("courses").document(document.getId())
+                                        .update(
+                                                "courseCode", newCourse.getCourseCode(),
+                                                "courseName", newCourse.getCourseName(),
+                                                "courseDescription", newCourse.getCourseDescription()
+                                                )
+
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully updated!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
     public void deleteCourse(Course course) {
+
         db.collection("courses")
                 .whereEqualTo("courseCode", course.getCourseCode())
                 .get()
@@ -54,10 +84,12 @@ public class CourseController {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                System.out.println("found course" + document.getId());
                                 db.collection("courses").document(document.getId())
                                         .delete()
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
                                         .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

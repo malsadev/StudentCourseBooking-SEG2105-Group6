@@ -4,47 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewCourseDetail"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/editCourse"
+    <EditText
+        android:id="@+id/courseDescEdit"
+        android:layout_width="374dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/white"
+        android:hint="ex: A course for Software Engineers"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379" />
+
+    <TextView
+        android:id="@+id/courseDescEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Course"
-        android:layout_below="@id/descriptionTxt"
-        android:textColor="#FFFFFF"
-        android:textSize="25dp"
+        android:text="COURSE DESCRIPTION : "
+        android:textColor="#8A49BF"
+        android:textSize="15sp"
         android:textStyle="bold"
-        app:backgroundTint="#8B48BE"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintVertical_bias="0.507" />
 
     <TextView
-        android:id="@+id/viewDetailTitleTxt"
+        android:id="@+id/editCourseTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="COURSE DETAILS "
+        android:text="Edit Course"
         android:textColor="#8A49BF"
-        android:textSize="35sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
-
+        app:layout_constraintVertical_bias="0.1" />
     <TextView
-        android:id="@+id/detailNameTxt"
+        android:id="@+id/courseCodeEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="COURSE NAME : "
+        android:text="COURSE CODE : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
@@ -52,87 +69,96 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25" />
-    <TextView
-        android:id="@+id/changeCourseNameTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="this will change"
-        android:textColor="#8A49BF"
+
+    <EditText
+        android:id="@+id/courseCodeEdit"
+        android:layout_width="375dp"
+        android:layout_height="54dp"
+        android:background="#FFFFFF"
+        android:hint="ex: SEG 2105"
+        android:padding="15dp"
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
-
-
+        app:layout_constraintVertical_bias=".3" />
     <TextView
-        android:id="@+id/detailCodeTxt"
+        android:id="@+id/courseNameEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="COURSE CODE : "
+        android:text="COURSE NAME : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.38" />
 
-
-    <TextView
-        android:id="@+id/changeCourseCodeTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="this will change"
-        android:textColor="#8A49BF"
+    <EditText
+        android:id="@+id/courseNameEdit"
+        android:layout_width="375dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/white"
+        android:hint="ex : Intro to Software Engineering"
+        android:padding="15dp"
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
-
-    <TextView
-        android:id="@+id/descriptionTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DESCRIPTION : "
-        android:textColor="#8A49BF"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
-    <TextView
-        android:id="@+id/changeCourseDescriptionTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="this will change"
-        android:textColor="#8A49BF"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias=".2" />
 
     <Button
-        android:id="@+id/courseDetailBackBtn"
+        android:id="@+id/saveChangesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/descriptionTxt"
+        android:layout_below="@id/courseDescEditText"
+        android:text="Save"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:backgroundTint="#8B48BE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saveChangesBtn"
+        android:text="Delete"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:backgroundTint="#8B48BE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.847" />
+
+    <Button
+        android:id="@+id/ViewCourseBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editCourseTxt"
         android:text="BACK"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
@@ -144,5 +170,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".97" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
