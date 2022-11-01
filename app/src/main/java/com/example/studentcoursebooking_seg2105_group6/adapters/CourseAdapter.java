@@ -74,17 +74,13 @@ public class CourseAdapter extends ArrayAdapter<Course> {
             public void onClick(View v) {
                 // on the item click on our list view.
                 // we are displaying a toast message.
-                Toast.makeText(getContext(), "Course deleted is : " + course.getCourseName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Course deleted is : " + course.getCourseName(), Toast.LENGTH_SHORT).show();
                 //courseController.deleteCourse(course);
                 Intent intent = new Intent(getContext(), ViewCourseDetail.class);
+                //transfering user data and course data when going to view a specific course
                 intent.putExtra("signedUser" , signedUser);
+                intent.putExtra("courseDetails", course);
                 getContext().startActivity(intent);
-                //text name change *** doesnt work yet****************************
-                //changeCourseNameTxt.setText(course.getCourseName());
-                //changeCourseNameTxt.setText(course.getCourseCode());
-                //changeCourseNameTxt.setText(course.getCourseDescription());
-
-
             }
         });
         return listitemView;

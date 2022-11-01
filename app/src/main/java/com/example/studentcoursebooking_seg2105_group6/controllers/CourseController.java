@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Document;
+
 import java.util.Map;
 
 public class CourseController {
@@ -42,6 +44,33 @@ public class CourseController {
                     }
                 });
 
+    }
+
+    public void updateCourse(Course ogCourse, Course newCourse ){
+        db.collection("courses")
+                .whereEqualTo("courseCode", ogCourse.getCourseCode())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                db.collection("courses").document(document.getId())
+                                        .update(
+                                                "courseCode", newCourse.getCourseCode(),
+                                                "courseName", newCourse.getCourseName(),
+                                                "courseDescription", newCourse.getCourseDescription()
+                                                )
+
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully updated!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     public void deleteCourse(Course course) {
