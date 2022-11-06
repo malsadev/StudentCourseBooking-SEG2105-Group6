@@ -34,6 +34,13 @@ public class EditCourse extends AppCompatActivity {
         Button deleteCourseBtn = findViewById(R.id.deleteBtn);
         CourseController controller = new CourseController();
 
+        //DISABLE FOR DIFFERENT USERS
+        //disable if signed user ==false
+        courseDesc.setFocusable(!(signedUser.getRole().equals("admin"))); //disable description
+        //disable for instructor
+        courseName.setFocusable(!(signedUser.getRole().equals("instructor")));//disable name
+        courseCode.setFocusable(!(signedUser.getRole().equals("instructor")));//disable code
+
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
             public void onClick(View view) {
