@@ -21,13 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class EditCourse extends AppCompatActivity {
-    boolean[] selectedDays;
-    ArrayList<Integer> daysList = new ArrayList<>();
-    String[] daysArray = {"monday", "tuesday", "wednesday", "thursday", "friday"};
-    boolean[] selectedTimes;
-    ArrayList<Integer> timesList = new ArrayList<>();
-    String[] timesArray = {"10", "11", "12", "13", "14"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +38,11 @@ public class EditCourse extends AppCompatActivity {
         Button viewCourseBackBtn = findViewById(R.id.ViewCourseBackBtn);
         Button deleteCourseBtn = findViewById(R.id.deleteBtn);
         CourseController controller = new CourseController();
-        TextView weekdaydropdown=findViewById(R.id.dropdownDays);
-        selectedDays=new boolean[daysArray.length];
-        TextView timesdropdown=findViewById(R.id.dropdownTimes);
-        selectedTimes=new boolean[daysArray.length];
+
+        //Auto-fill textboxes since other users cant edit some boxes
+        courseName.setText(ogCourse.getCourseName());
+        courseCode.setText(ogCourse.getCourseCode());
+        courseDesc.setText(ogCourse.getCourseDescription());
 
 
         //DISABLE FOR DIFFERENT USERS
@@ -57,99 +51,6 @@ public class EditCourse extends AppCompatActivity {
         //disable for instructor
         courseName.setFocusable(!(signedUser.getRole().equals("instructor")));//disable name
         courseCode.setFocusable(!(signedUser.getRole().equals("instructor")));//disable code
-
-        weekdaydropdown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //intialize aler
-                AlertDialog.Builder builder=new AlertDialog.Builder(
-                        EditCourse.this
-                );
-                //set non cancel
-                builder.setCancelable(false);
-                builder.setMultiChoiceItems(daysArray, selectedDays, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                        if (b) {
-                            daysList.add(i);
-                            Collections.sort(daysList);
-                        }else{
-                            daysList.remove(i);
-                        }
-                    }
-                });
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        StringBuilder stringBuilder= new StringBuilder();
-                        for (int j=0;j<daysList.size();j++){
-                            stringBuilder.append(daysArray[daysList.get(j)]);
-                            if (j !=daysList.size()-1){
-                                stringBuilder.append(", ");
-                            }
-                        }
-                        weekdaydropdown.setText((stringBuilder.toString()));
-
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
-                {
-
-                }
-            }
-        });
-        timesdropdown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //intialize aler
-                AlertDialog.Builder builder=new AlertDialog.Builder(
-                        EditCourse.this
-                );
-                //set non cancel
-                builder.setCancelable(false);
-                builder.setMultiChoiceItems(timesArray, selectedTimes, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                        if (b) {
-                            timesList.add(i);
-                            Collections.sort(timesList);
-                        }else{
-                            timesList.remove(i);
-                        }
-                    }
-                });
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        StringBuilder stringBuilder= new StringBuilder();
-                        for (int j=0;j<timesList.size();j++){
-                            stringBuilder.append(timesArray[timesList.get(j)]);
-                            if (j !=timesList.size()-1){
-                                stringBuilder.append(", ");
-                            }
-                        }
-                        timesdropdown.setText((stringBuilder.toString()));
-
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
-                {
-
-                }
-            }
-        });
 
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
