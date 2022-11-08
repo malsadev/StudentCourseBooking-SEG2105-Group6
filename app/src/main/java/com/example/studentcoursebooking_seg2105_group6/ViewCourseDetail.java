@@ -56,7 +56,7 @@ public class ViewCourseDetail extends AppCompatActivity {
         courseDesc.setText(thisCourse.getCourseDescription());
         courseInstructorTxt.setText(thisCourse.getCourseInstructor());
         courseCapacityTxt.setText(thisCourse.getCourseCapacity());
-        courseScheduleTxt.setText(thisCourse.getCourseSchedule().toString());
+        //courseScheduleTxt.setText(thisCourse.getCourseSchedule().toString());
 
 
         editCourseBtn.setOnClickListener(new View.OnClickListener() {//when button clicked

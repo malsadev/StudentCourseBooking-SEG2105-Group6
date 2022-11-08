@@ -76,7 +76,4 @@ public class Course implements Serializable {
         courseSchedule.add(date);
     }
 
-    public List<Date> getCourseSchedule(){
-        return courseSchedule;
-    }
 }
