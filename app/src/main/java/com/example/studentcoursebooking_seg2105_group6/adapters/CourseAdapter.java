@@ -79,6 +79,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
                 Intent intent = new Intent(getContext(), ViewCourseDetail.class);
                 //transfering user data and course data when going to view a specific course
                 intent.putExtra("signedUser" , signedUser);
+                System.out.println("in item listener, instructor is: " + course.getCourseInstructor());
                 intent.putExtra("course", course);
                 getContext().startActivity(intent);
             }
