@@ -60,7 +60,8 @@ public class CourseController {
                                         .update(
                                                 "courseCode", newCourse.getCourseCode(),
                                                 "courseName", newCourse.getCourseName(),
-                                                "courseDescription", newCourse.getCourseDescription()
+                                                "courseDescription", newCourse.getCourseDescription(),
+                                                "courseSchedule", newCourse.getCourseSchedule()
                                                 )
 
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully updated!"))
