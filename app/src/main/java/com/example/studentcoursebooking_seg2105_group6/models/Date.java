@@ -12,6 +12,10 @@ public class Date implements Serializable {
         this.time = time;
     }
 
+    public Date() {
+
+    }
+
     public String getDay() {
         return day;
     }
