@@ -2,22 +2,27 @@ package com.example.studentcoursebooking_seg2105_group6.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Course implements Serializable {
     private String courseName;
     private String courseCode;
     private String courseDescription = "";
-    private ArrayList<Date> courseSchedule = new ArrayList<>();
+    private List<Date> courseSchedule = new ArrayList<>();
+    private String courseInstructor = "None";
+    private String courseCapacity = "None";
 
-    public Course() {
+
+
+    public Course(){
 
     }
 
-    public Course(String courseName, String courseCode) {
+    public Course(String courseName, String courseCode){
         this.courseName = courseName;
         this.courseCode = courseCode;
     }
+
 
     public String getCourseName() {
         return courseName;
@@ -43,11 +48,35 @@ public class Course implements Serializable {
         courseDescription = description;
     }
 
+    public String getCourseInstructor() {
+        return courseInstructor;
+    }
+
+    public void setCourseInstructor(String courseInstructor) {
+        this.courseInstructor = courseInstructor;
+    }
+
+    public String getCourseCapacity() {
+        return courseCapacity;
+    }
+
+    public void setCourseCapacity(String courseCapacity) {
+        this.courseCapacity = courseCapacity;
+    }
+
+    public List<Date> getCourseSchedule() {
+        return courseSchedule;
+    }
+
+    public void setCourseSchedule(List<Date> courseSchedule) {
+        this.courseSchedule = courseSchedule;
+    }
+
     public void addDate(Date date){
         courseSchedule.add(date);
     }
 
-    public ArrayList<Date> getCourseSchedule(){
+    public List<Date> getCourseSchedule(){
         return courseSchedule;
     }
 }

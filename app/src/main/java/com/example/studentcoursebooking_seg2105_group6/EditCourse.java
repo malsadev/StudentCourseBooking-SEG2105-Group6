@@ -37,7 +37,7 @@ public class EditCourse extends AppCompatActivity  {
         Intent i = getIntent();
 
         //get course from course view activity
-        Course ogCourse = (Course)i.getSerializableExtra("course");
+        Course ogCourse = (Course) i.getSerializableExtra("course");
         User signedUser = (User) i.getSerializableExtra("signedUser");
 
         EditText courseName = findViewById(R.id.courseNameEdit);

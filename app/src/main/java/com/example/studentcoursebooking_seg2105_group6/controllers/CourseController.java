@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.Instructor;
+import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -19,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Document;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class CourseController {
@@ -46,7 +49,7 @@ public class CourseController {
 
     }
 
-    public void updateCourse(Course ogCourse, Course newCourse ){
+    public void updateCourse(Course ogCourse, Course newCourse){
         db.collection("courses")
                 .whereEqualTo("courseCode", ogCourse.getCourseCode())
                 .get()
@@ -91,6 +94,67 @@ public class CourseController {
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
                                         .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
 
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public void addInstructorCourse(Course course, User instructor) {
+        System.out.println("in method");
+        db.collection("courses")
+                .whereEqualTo("courseCode", course.getCourseCode())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                System.out.println("found course" + document.getId());
+                                db.collection("courses").document(document.getId())
+                                        .update("courseInstructor" , instructor.getUsername())
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    }
+
+    public void removeInstructorFromCourse(Course course){
+        db.collection("courses")
+                .whereEqualTo("courseCode", course.getCourseCode())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                System.out.println("found course" + document.getId());
+                                db.collection("courses").document(document.getId())
+                                        .update("courseInstructor" , "None")
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+                                db.collection("courses").document(document.getId())
+                                        .update("courseDescription" , "None")
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+                                db.collection("courses").document(document.getId())
+                                        .update("courseCapacity" , "None")
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+                                db.collection("courses").document(document.getId())
+                                        .update("courseSchedule" , Arrays.asList())
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());

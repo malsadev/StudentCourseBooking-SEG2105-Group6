@@ -16,7 +16,6 @@ import com.example.studentcoursebooking_seg2105_group6.models.User;
 public class WelcomePage extends AppCompatActivity {
     private static String adminRole = "admin";
     private static String instructorRole = "instructor";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +31,7 @@ public class WelcomePage extends AppCompatActivity {
         Button viewUserBtn = (Button) findViewById(R.id.viewUsersBtn);
 
        createCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
-       viewCourseBtn.setEnabled((signedUser.getRole().equals(adminRole))|| (signedUser.getRole().equals(instructorRole)));
+       viewCourseBtn.setEnabled(signedUser.getRole().equals(adminRole) || signedUser.getRole().equals(instructorRole));
        viewUserBtn.setEnabled(signedUser.getRole().equals(adminRole));
 
 
