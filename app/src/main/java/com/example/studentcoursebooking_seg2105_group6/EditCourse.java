@@ -43,6 +43,7 @@ public class EditCourse extends AppCompatActivity  {
         EditText courseName = findViewById(R.id.courseNameEdit);
         EditText courseCode = findViewById(R.id.courseCodeEdit);
         EditText courseDesc = findViewById(R.id.courseDescEdit);
+        EditText courseCapacity = findViewById(R.id.courseCapacityEdit);
         Button saveChangesBtn = findViewById(R.id.saveChangesBtn);
         Button viewCourseBackBtn = findViewById(R.id.ViewCourseBackBtn);
         Button deleteCourseBtn = findViewById(R.id.deleteBtn);
@@ -85,12 +86,16 @@ public class EditCourse extends AppCompatActivity  {
         //Auto-fill textboxes since other users cant edit some boxes
         courseName.setText(ogCourse.getCourseName());
         courseCode.setText(ogCourse.getCourseCode());
+        courseCapacity.setText(ogCourse.getCourseCapacity());
         courseDesc.setText(ogCourse.getCourseDescription());
 
 
         //DISABLE FOR DIFFERENT USERS
         //disable if signed user ==false
         courseDesc.setFocusable(!(signedUser.getRole().equals("admin"))); //disable description
+        courseCapacity.setFocusable(!(signedUser.getRole().equals("admin"))); //disable description
+        dayOneSpinner.setEnabled(!(signedUser.getRole().equals("admin")));
+        timeOneSpinner.setEnabled(!(signedUser.getRole().equals("admin")));
         //disable for instructor
         courseName.setFocusable(!(signedUser.getRole().equals("instructor")));//disable name
         courseCode.setFocusable(!(signedUser.getRole().equals("instructor")));//disable code
@@ -99,7 +104,7 @@ public class EditCourse extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 //creates new course object with entered details
-                Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString());
+                Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString(), courseCapacity.getText().toString());
                 newCourse.setCourseDescription(courseDesc.getText().toString());
 
                 //updates original course by replacing it with edited course

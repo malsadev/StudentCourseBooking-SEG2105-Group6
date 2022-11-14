@@ -24,6 +24,7 @@ public class CreateCourse extends AppCompatActivity {
         EditText courseCode = findViewById(R.id.courseCode);
         Button createCourseBackBtn=(Button)findViewById(R.id.createCourseBackBtn);
         Button createdCourseBtn=(Button)findViewById(R.id.createdCourseBtn);
+        String courseCapacity="";
 
         User signedUser = (User) getIntent().getSerializableExtra("signedUser");
         CourseController controller = new CourseController();
@@ -32,7 +33,7 @@ public class CreateCourse extends AppCompatActivity {
         createdCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Course course = new Course(courseName.getText().toString(), courseCode.getText().toString());
+                Course course = new Course(courseName.getText().toString(), courseCode.getText().toString(), courseCapacity);
                 controller.createCourse(course);
                 Toast.makeText(CreateCourse.this, "Course created successfully", Toast.LENGTH_LONG).show();
 
