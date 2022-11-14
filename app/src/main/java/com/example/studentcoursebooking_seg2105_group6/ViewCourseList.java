@@ -35,9 +35,6 @@ public class ViewCourseList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courselist_view);
-
-
-
         coursesLV = findViewById(R.id.idLVCourses);
         courseArrayList = new ArrayList<>();
 
@@ -49,16 +46,26 @@ public class ViewCourseList extends AppCompatActivity {
         // to load data in our list view.
         loadDatainListview();
 
+        Button searchCoursesBtn = findViewById(R.id.searchCoursesBtn);
+        Button viewCourseListBackBtn = findViewById(R.id.ViewCourseListBackBtn);
 
-//        Button viewCourseBackBtn=(Button)findViewById(R.id.viewCourseBackBtn);
-//
-//        viewCourseBackBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(ViewCourse.this, WelcomePage.class);
-//                startActivity(intent);// should take to Welcome account
-//            }
-//        });
+        searchCoursesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewCourseList.this, searchCourse.class);
+                intent.putExtra("signedUser", signedUser);
+                startActivity(intent);// should take to Search Course
+            }
+        });
+
+        viewCourseListBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewCourseList.this, WelcomePage.class);
+                intent.putExtra("signedUser", signedUser);
+                startActivity(intent);// should take to Welcome account
+            }
+        });
     }
 
     private void loadDatainListview() {

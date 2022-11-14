@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">StudentCourseBooking-SEG2105-Group6</string>
+    <string-array name="searchParams">
+        <item>Name</item>
+        <item>Code</item>
+    </string-array>
 </resources>
