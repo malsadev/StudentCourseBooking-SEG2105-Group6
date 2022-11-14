@@ -64,7 +64,7 @@ public class CourseController {
                                                 "courseCode", newCourse.getCourseCode(),
                                                 "courseName", newCourse.getCourseName(),
                                                 "courseDescription", newCourse.getCourseDescription(),
-                                                "courseSchedule", newCourse.getCourseSchedule()
+                                                "courseSchedule", newCourse.getCourseSchedule(),"courseCapacity",newCourse.getCourseCapacity()
                                                 )
 
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully updated!"))

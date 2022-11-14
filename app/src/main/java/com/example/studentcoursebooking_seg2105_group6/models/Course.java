@@ -18,9 +18,10 @@ public class Course implements Serializable {
 
     }
 
-    public Course(String courseName, String courseCode){
+    public Course(String courseName, String courseCode, String courseCapacity){
         this.courseName = courseName;
         this.courseCode = courseCode;
+        this.courseCapacity=courseCapacity;
     }
 
 
