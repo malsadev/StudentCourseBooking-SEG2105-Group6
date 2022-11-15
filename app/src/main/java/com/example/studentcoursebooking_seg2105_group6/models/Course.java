@@ -2,13 +2,14 @@ package com.example.studentcoursebooking_seg2105_group6.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Course implements Serializable {
     private String courseName;
     private String courseCode;
     private String courseDescription = "";
-    private List<Date> courseSchedule = new ArrayList<>();
+    private List<Date> courseSchedule = new ArrayList<Date>(Arrays.asList(new Date("None", "None")));
     private String courseInstructor = "None";
     private String courseCapacity = "None";
 
@@ -69,7 +70,7 @@ public class Course implements Serializable {
         return courseSchedule;
     }
 
-    public void setCourseSchedule(List<Date> courseSchedule) {
+    public void setCourseSchedule(ArrayList<Date> courseSchedule) {
         this.courseSchedule = courseSchedule;
     }
 

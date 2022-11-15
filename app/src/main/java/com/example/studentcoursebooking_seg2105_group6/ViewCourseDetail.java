@@ -48,7 +48,7 @@ public class ViewCourseDetail extends AppCompatActivity {
         editCourseBtn.setEnabled(thisCourse.getCourseInstructor().equals(signedUser.getUsername())
                 || signedUser.getRole().equals(adminRole));
 
-        unteachCourseBtn.setEnabled(editCourseBtn.isEnabled() && !teachCourseBtn.isEnabled());
+        unteachCourseBtn.setEnabled(editCourseBtn.isEnabled() && !teachCourseBtn.isEnabled() && !signedUser.getRole().equals(adminRole));
 
         //changes text to text corresponding to course details, taken from intent i
         courseTitle.setText(thisCourse.getCourseName());
@@ -56,7 +56,7 @@ public class ViewCourseDetail extends AppCompatActivity {
         courseDesc.setText(thisCourse.getCourseDescription());
         courseInstructorTxt.setText(thisCourse.getCourseInstructor());
         courseCapacityTxt.setText(thisCourse.getCourseCapacity());
-        //courseScheduleTxt.setText(thisCourse.getCourseSchedule().toString());
+        courseScheduleTxt.setText("Day: " +thisCourse.getCourseSchedule().get(thisCourse.getCourseSchedule().size()-1).getDay() + "\nTime: " + thisCourse.getCourseSchedule().get(thisCourse.getCourseSchedule().size()-1).getTime());
 
 
         editCourseBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
