@@ -46,6 +46,7 @@ public class ViewCourseList extends AppCompatActivity {
         // to load data in our list view.
         loadDatainListview();
 
+
         Button searchCoursesBtn = findViewById(R.id.searchCoursesBtn);
         Button viewCourseListBackBtn = findViewById(R.id.ViewCourseListBackBtn);
 
@@ -62,6 +63,7 @@ public class ViewCourseList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewCourseList.this, WelcomePage.class);
+                signedUser = (User) getIntent().getSerializableExtra("signedUser");
                 intent.putExtra("signedUser", signedUser);
                 startActivity(intent);// should take to Welcome account
             }

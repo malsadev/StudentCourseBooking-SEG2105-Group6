@@ -13,7 +13,6 @@ public class Date implements Serializable {
     }
 
     public Date() {
-
     }
 
     public String getDay() {
