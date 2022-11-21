@@ -211,4 +211,7 @@ public class CourseController {
     }
 
 
+    public void addStudentToCourse(Course thisCourse, User signedUser) {
+
+    }
 }
