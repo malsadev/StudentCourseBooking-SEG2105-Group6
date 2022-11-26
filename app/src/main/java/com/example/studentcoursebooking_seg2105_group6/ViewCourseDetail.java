@@ -47,6 +47,7 @@ public class ViewCourseDetail extends AppCompatActivity {
         Button teachCourseBtn = findViewById(R.id.teachCourse);
         Button unteachCourseBtn = findViewById(R.id.unteachCourse);
         Button enrollCourse = findViewById(R.id.enrollCourse);
+        Button unEnrollCourse = findViewById(R.id.unEnrollCourse);
 
         teachCourseBtn.setEnabled(signedUser.getRole().equals(instructorRole)
                 && thisCourse.getCourseInstructor().equals("None")
