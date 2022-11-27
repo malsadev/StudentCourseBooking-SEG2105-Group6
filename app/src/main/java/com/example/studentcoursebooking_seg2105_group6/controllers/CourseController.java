@@ -94,7 +94,9 @@ public class CourseController {
                                         update("course.courseCode", FieldValue.delete(),
                                                 "course.CourseName", FieldValue.delete(),
                                                 "course.courseDescription", FieldValue.delete(),
-                                                "course.courseSchedule", FieldValue.delete());
+                                                "course.courseSchedule", FieldValue.delete())
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
                                         //update((Map<String, Object> unenroll = new HashMap<>());
                                        // unenroll.put("course.courseCode", FieldValue.delete());
                             }
