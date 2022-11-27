@@ -64,7 +64,30 @@ public class AccountController {
                         }
                     }
                 });
-
-
     }
+
+    //unEnroll from a course
+    public void removeStudentFromCourse(Course course, User user){
+        db.collection("users").whereEqualTo("username", user.getUsername())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                db.collection("users").document(document.getId()).
+                                        update("courses", FieldValue.arrayUnion(course).delete())
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
+                                //update((Map<String, Object> unenroll = new HashMap<>());
+                                // unenroll.put("course.courseCode", FieldValue.delete());
+                            }
+                        } else{
+                            Log.d(TAG, "Error getting documents", task.getException());
+                        }
+                    }
+                });
+    }
+
 }

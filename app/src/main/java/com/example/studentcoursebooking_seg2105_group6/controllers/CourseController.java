@@ -80,31 +80,6 @@ public class CourseController {
                 });
     }
 
-    //unEnroll from a course
-    public void unEnroll(Course course){
-        db.collection("courses").whereEqualTo("courseCode", course.getCourseCode())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                db.collection("courses").document(document.getId()).
-                                        update("course.courseCode", FieldValue.delete(),
-                                                "course.CourseName", FieldValue.delete(),
-                                                "course.courseDescription", FieldValue.delete(),
-                                                "course.courseSchedule", FieldValue.delete())
-                                        .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
-                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
-                                        //update((Map<String, Object> unenroll = new HashMap<>());
-                                       // unenroll.put("course.courseCode", FieldValue.delete());
-                            }
-                        }
-
-                    }
-                });
-    }
 
     public void deleteCourse(Course course) {
 

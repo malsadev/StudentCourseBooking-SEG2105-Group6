@@ -124,6 +124,13 @@ public class ViewCourseDetail extends AppCompatActivity {
             }
         });
 
+        unEnrollCourse.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewCourseDetail.this, WelcomePage.class)
+            }
+        }));
+
 
 
 
