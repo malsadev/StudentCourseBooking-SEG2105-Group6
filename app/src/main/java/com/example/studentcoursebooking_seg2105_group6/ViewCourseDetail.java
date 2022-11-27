@@ -60,6 +60,8 @@ public class ViewCourseDetail extends AppCompatActivity {
 
         enrollCourse.setEnabled(signedUser.getRole().equals(studentRole));
 
+        unEnrollCourse.setEnabled(signedUser.getRole().equals(studentRole));
+
         //changes text to text corresponding to course details, taken from intent i
         courseTitle.setText(thisCourse.getCourseName());
         courseCode.setText(thisCourse.getCourseCode());
