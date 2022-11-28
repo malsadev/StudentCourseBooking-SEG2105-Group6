@@ -99,39 +99,6 @@ public class EditCourse extends AppCompatActivity  {
         //disable for instructor
         courseName.setFocusable(!(signedUser.getRole().equals("instructor")));//disable name
         courseCode.setFocusable(!(signedUser.getRole().equals("instructor")));//disable code
-        courseDesc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!courseDesc.isFocusable()){
-                    Toast.makeText(EditCourse.this, "Only Instructors can edit this field", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        courseCapacity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!courseCapacity.isFocusable()){
-                    Toast.makeText(EditCourse.this, "Only Instructors can edit this field", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        courseName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!courseName.isFocusable()){
-                    Toast.makeText(EditCourse.this, "Only Admins can edit this field", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        courseCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!courseCode.isFocusable()){
-                    Toast.makeText(EditCourse.this, "Only Admins can edit this field", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
 
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
