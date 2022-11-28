@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +31,8 @@ public class EditCourse extends AppCompatActivity  {
     String[] times={"8:30AM-9:50AM", "10:00AM-11:20AM", "11:30AM-12:50PM","1:00PM- 2:20OM", "2:30PM-3:50AM","4:00PM-5:20PM","5:30PM-6:50PM","7:30PM-9:50PM"};
     Spinner dayOneSpinner;
     Spinner timeOneSpinner;
+    String newCapacity;
+    boolean flag = false;
     Date dateChosen=new Date("","");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +104,45 @@ public class EditCourse extends AppCompatActivity  {
         courseName.setFocusable(!(signedUser.getRole().equals("instructor")));//disable name
         courseCode.setFocusable(!(signedUser.getRole().equals("instructor")));//disable code
 
+        courseCapacity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try {
+                    int capacity = Integer.parseInt(editable.toString());
+                    if (capacity < 0 || capacity > 999){
+                        courseCapacity.setError("Capacity must be within the range from 0 to 999");
+                        flag=false;
+                    }else{
+                        flag=true;
+                    }
+                }catch(Exception e){
+                    courseCapacity.setError("Please enter a valid number.");
+                    flag=false;
+                }
+            }
+        });
+
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
             public void onClick(View view) {
                 //creates new course object with entered details
-                Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString(), courseCapacity.getText().toString());
+                if (flag){
+                    newCapacity=courseCapacity.getText().toString();
+                }else{
+                    newCapacity=ogCourse.getCourseCapacity();
+                }
+
+                Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString(), newCapacity);
                 newCourse.setCourseDescription(courseDesc.getText().toString());
 
                 //updates original course by replacing it with edited course

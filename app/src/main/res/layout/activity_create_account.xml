@@ -7,6 +7,19 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
+    <Spinner
+        android:id="@+id/userTypeSpinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.298" />
+
     <TextView
         android:id="@+id/createText"
         android:layout_width="wrap_content"
@@ -37,22 +50,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25" />
 
-    <EditText
-        android:id="@+id/userType"
-        android:layout_width="375dp"
-        android:layout_height="54dp"
-        android:background="#FFFFFF"
-        android:drawableRight="@drawable/ic_baseline_person_24"
-        android:hint="instructor or student"
-        android:padding="15dp"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295"/>
+
 
     <TextView
         android:id="@+id/createNameTxt"
@@ -135,7 +133,7 @@
         android:layout_width="375dp"
         android:layout_height="54dp"
         android:background="#FFFFFF"
-        android:drawableRight="@drawable/ic_baseline_person_24"
+        android:drawableRight="@drawable/ic_baseline_lock_24"
         android:hint="********"
         android:padding="15dp"
         android:textSize="20sp"

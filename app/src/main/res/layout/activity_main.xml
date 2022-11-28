@@ -47,6 +47,7 @@
         android:background="@color/white"
         android:drawableRight="@drawable/ic_baseline_lock_24"
         android:hint="Password"
+        android:inputType="textPassword"
         android:padding="15dp"
         android:textSize="20sp"
         android:textStyle="italic"
