@@ -206,6 +206,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
+
     <EditText
         android:id="@+id/courseCapacityEdit"
         android:layout_width="50dp"
