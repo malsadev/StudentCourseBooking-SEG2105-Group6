@@ -14,33 +14,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studentcoursebooking_seg2105_group6.adapters.CourseAdapter;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
+import com.example.studentcoursebooking_seg2105_group6.models.Date;
 import com.example.studentcoursebooking_seg2105_group6.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class searchCourse extends AppCompatActivity {
     private String[] choiceArray = {"Name", "Code"};
-    private String choice;
+    private String[] dayArray ={"", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+    private String choice, day;
+    private boolean searchDay = false;
     private EditText searchEdit;
+    private ArrayList<Date> dateList;
     FirebaseFirestore db;
     ListView courseListView;
     User signedUser;
@@ -53,9 +48,13 @@ public class searchCourse extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         signedUser = (User) i.getSerializableExtra("signedUser");
         Spinner spinner = findViewById(R.id.searchSpinner);
+        Spinner daySpinner = findViewById(R.id.daySpinner);
         ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_spinner_item, choiceArray);
+        ArrayAdapter adapter2=new ArrayAdapter(this, android.R.layout.simple_spinner_item, dayArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        daySpinner.setAdapter(adapter2);
         searchEdit=findViewById(R.id.searchEditTxt);
         Button searchCourseBackBtn = findViewById(R.id.searchCourseBackBtn);
         Button searchCourseBtn = findViewById(R.id.searchBtn);
@@ -65,6 +64,7 @@ public class searchCourse extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 choice = adapterView.getSelectedItem().toString();
+                Toast.makeText(searchCourse.this, choice, Toast.LENGTH_SHORT).show();
                 if (choice=="Name"){
                     searchEdit.setHint("Ex: Intro to Software Engineering");
                 }else{
@@ -74,6 +74,24 @@ public class searchCourse extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                day = adapterView.getSelectedItem().toString();
+                if (!day.equals(dayArray[0])){
+                    searchDay=true;
+                    Toast.makeText(searchCourse.this, day, Toast.LENGTH_SHORT).show();
+                }else{
+                    searchDay=false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                day=dayArray[0];
             }
         });
 
@@ -116,12 +134,27 @@ public class searchCourse extends AppCompatActivity {
                                 // after getting this list we are passing
                                 // that list to our object class.
                                 Course course = d.toObject(Course.class);
-                                String courseName = course.getCourseName();
-                                String courseCode = course.getCourseCode();
-                                if (choice == choiceArray[0] && courseName.equals(editText)){
-                                    courseArrayList.add(course);
-                                } else if (choice == choiceArray[1] && courseCode.equals(editText)) {
-                                    courseArrayList.add(course);
+                                if (searchDay) {
+                                    boolean dateMatch = false;
+                                    if (course.getCourseSchedule()!=null) {
+                                        dateList = course.getCourseSchedule();
+                                        for (int i = 0; i < dateList.size(); ++i) {
+                                            if (!dateMatch) {
+                                                if (dateList.get(i).getDay().equals(day)) {
+                                                    dateMatch = true;
+                                                    courseArrayList.add(course);
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    String courseName = course.getCourseName();
+                                    String courseCode = course.getCourseCode();
+                                    if (choice == choiceArray[0] && courseName.equals(editText)) {
+                                        courseArrayList.add(course);
+                                    } else if (choice == choiceArray[1] && courseCode.equals(editText)) {
+                                        courseArrayList.add(course);
+                                    }
                                 }
                             }
                             Log.d("", courseArrayList.toString());

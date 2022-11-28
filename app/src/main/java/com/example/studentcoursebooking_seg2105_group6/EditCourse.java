@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,9 +28,11 @@ import java.util.Collections;
 
 public class EditCourse extends AppCompatActivity  {
     String[] days={"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
-    String[] times={"8:30AM-9:50AM", "10:00AM-11:20AM", "11:30AM-12:50PM","1:00PM- 2:20OM", "2:30PM-3:50AM","4:00PM-5:20PM","5:30PM-6:50PM","7:30PM-9:50PM"};
+    String[] times={"8:30AM-9:50AM", "10:00AM-11:20AM", "11:30AM-12:50PM","1:00PM- 2:20PM", "2:30PM-3:50AM","4:00PM-5:20PM","5:30PM-6:50PM","7:30PM-9:50PM"};
     Spinner dayOneSpinner;
     Spinner timeOneSpinner;
+    boolean capacityFlag=false;
+    String validCapacity;
     Date dateChosen=new Date("","");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class EditCourse extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dayChosen = dayOneSpinner.getSelectedItem().toString();
                 dateChosen.setDay(dayChosen);
+                Toast.makeText(EditCourse.this, dayChosen, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -73,7 +78,7 @@ public class EditCourse extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String timeChosen = timeOneSpinner.getSelectedItem().toString();
                 dateChosen.setTime(timeChosen);
-
+                Toast.makeText(EditCourse.this, timeChosen, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -132,12 +137,45 @@ public class EditCourse extends AppCompatActivity  {
             }
         });
 
+        courseCapacity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try{
+                    int newCapacity = Integer.parseInt(courseCapacity.getText().toString());
+                    if (newCapacity<0 || newCapacity>999){
+                        courseCapacity.setError("Capacity must be within the range of 0 to 999.");
+                        capacityFlag=false;
+                    }else{
+                        capacityFlag=true;
+                    }
+                }catch (Exception e){
+                    courseCapacity.setError("Entry must be a valid number");
+                    capacityFlag=false;
+                }
+            }
+        });
+
 
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
             public void onClick(View view) {
                 //creates new course object with entered details
-                Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString(), courseCapacity.getText().toString());
+                if (capacityFlag==true){
+                    validCapacity = courseCapacity.getText().toString();
+                }else{
+                    validCapacity = ogCourse.getCourseCapacity();
+                }
+                Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString(), validCapacity);
                 newCourse.setCourseDescription(courseDesc.getText().toString());
 
                 //updates original course by replacing it with edited course

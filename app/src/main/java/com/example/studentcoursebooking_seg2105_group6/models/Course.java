@@ -1,6 +1,7 @@
 package com.example.studentcoursebooking_seg2105_group6.models;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,9 +10,10 @@ public class Course implements Serializable {
     private String courseName;
     private String courseCode;
     private String courseDescription = "";
-    private List<Date> courseSchedule = new ArrayList<Date>(Arrays.asList(new Date("None", "None")));
+    private ArrayList<Date> courseSchedule = new ArrayList<Date>();
     private String courseInstructor = "None";
-    private String courseCapacity = "None";
+    private String courseCapacity="";
+    private ArrayList<User> enrolledStudents = new ArrayList<>();
 
 
 
@@ -66,7 +68,7 @@ public class Course implements Serializable {
         this.courseCapacity = courseCapacity;
     }
 
-    public List<Date> getCourseSchedule() {
+    public ArrayList<Date> getCourseSchedule() {
         return courseSchedule;
     }
 
@@ -77,5 +79,9 @@ public class Course implements Serializable {
     public void addDate(Date date){
         courseSchedule.add(date);
     }
+
+    public void addStudent(User user){enrolledStudents.add(user);}
+
+    public ArrayList<User> getStudentList(){return enrolledStudents;}
 
 }
