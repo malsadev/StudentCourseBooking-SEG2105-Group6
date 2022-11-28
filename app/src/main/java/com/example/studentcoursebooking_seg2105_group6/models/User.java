@@ -1,12 +1,14 @@
 package com.example.studentcoursebooking_seg2105_group6.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class User implements Serializable {
     private String username;
     private String role;
     private String password;
     private String name;
+    private ArrayList<Course> courseList = new ArrayList<>();
 
     //serializaation for cross-activity context transfer
     public User() {
@@ -55,4 +57,8 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ArrayList<Course> getCourseList(){return courseList;}
+
+    public void addCourse(Course course){courseList.add(course);}
 }
