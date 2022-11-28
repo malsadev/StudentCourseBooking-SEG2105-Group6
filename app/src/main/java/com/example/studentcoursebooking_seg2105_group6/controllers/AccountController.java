@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+
 public class AccountController {
     private static FirebaseFirestore db;
     public AccountController(){db=FirebaseFirestore.getInstance();}
@@ -67,7 +69,7 @@ public class AccountController {
     }
 
     //unEnroll from a course
-    public void removeStudentFromCourse(Course course, User user){
+    public void removeStudentFromCourse(Course course, User user) {
         db.collection("users").whereEqualTo("username", user.getUsername())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -77,7 +79,7 @@ public class AccountController {
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 db.collection("users").document(document.getId()).
-                                        update("courses", FieldValue.arrayUnion(course).delete())
+                                        update("courses", FieldValue.arrayRemove(course))
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
                                         .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
                                 //update((Map<String, Object> unenroll = new HashMap<>());
@@ -88,6 +90,26 @@ public class AccountController {
                         }
                     }
                 });
+    }
+
+
+    //List of all enrolled courses
+    public ArrayList<String> enrolledCoursesList(Course course, User user){
+        ArrayList<String> coursesList = new ArrayList<>();
+        db.collection("users")
+                .whereEqualTo("courses", course.getCourseCode())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                           coursesList.add(course.getCourseCode());
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        return coursesList;
     }
 
 }
