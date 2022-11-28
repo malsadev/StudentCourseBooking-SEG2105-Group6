@@ -47,6 +47,8 @@ public class ViewCourseDetail extends AppCompatActivity {
         Button teachCourseBtn = findViewById(R.id.teachCourse);
         Button unteachCourseBtn = findViewById(R.id.unteachCourse);
         Button enrollCourse = findViewById(R.id.enrollCourse);
+        Button unEnrollCourse = findViewById(R.id.unEnrollCourse);
+        Button enrolledCourse = findViewById(R.id.enrolledCourse);
 
         teachCourseBtn.setEnabled(signedUser.getRole().equals(instructorRole)
                 && thisCourse.getCourseInstructor().equals("None")
@@ -58,6 +60,11 @@ public class ViewCourseDetail extends AppCompatActivity {
         unteachCourseBtn.setEnabled(editCourseBtn.isEnabled() && !teachCourseBtn.isEnabled() && !signedUser.getRole().equals(adminRole));
 
         enrollCourse.setEnabled(signedUser.getRole().equals(studentRole));
+
+        unEnrollCourse.setEnabled(signedUser.getRole().equals(studentRole));
+
+        enrolledCourse.setEnabled(signedUser.getRole().equals(studentRole));
+
 
         //changes text to text corresponding to course details, taken from intent i
         courseTitle.setText(thisCourse.getCourseName());
@@ -91,11 +98,11 @@ public class ViewCourseDetail extends AppCompatActivity {
         teachCourseBtn.setOnClickListener(new View.OnClickListener() {//when button clicked
             @Override
             public void onClick(View view) {
-                System.out.println("in listerner");
+                System.out.println("in listener");
                 Intent intent = new Intent(ViewCourseDetail.this, WelcomePage.class);
                 courseController.addInstructorCourse(thisCourse, signedUser);
                 intent.putExtra("signedUser", signedUser);
-                System.out.println("acitvity strta");
+                System.out.println("activity start");
                 startActivity(intent);// should take to create account
             }
         });
@@ -118,10 +125,29 @@ public class ViewCourseDetail extends AppCompatActivity {
                 accountController.addStudentToCourse(thisCourse, signedUser);
                 intent.putExtra("signedUser", signedUser);
                 startActivity(intent);
+                //create arraylist of all courses enrolled in
             }
         });
 
+        unEnrollCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewCourseDetail.this, WelcomePage.class);
+                accountController.removeStudentFromCourse(thisCourse, signedUser);
+                intent.putExtra("signedUser", signedUser);
+                startActivity(intent);
+            }
+        });
 
+        enrolledCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewCourseDetail.this, WelcomePage.class);
+                accountController.enrolledCoursesList(thisCourse, signedUser);
+                intent.putExtra("signedUser", signedUser);
+                startActivity(intent);
+            }
+        });
 
 
     }
