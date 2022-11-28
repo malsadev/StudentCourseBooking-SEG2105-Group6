@@ -44,7 +44,7 @@ public class AccountController {
                 });
     }
 
-    public void addStudentToCourse(Course course, User user) {
+    public void addStudentToCourse(User user) {
         db.collection("users")
                 .whereEqualTo("username", user.getUsername())
                 .get()
@@ -55,11 +55,9 @@ public class AccountController {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 db.collection("users").document(document.getId())
-                                        .update(
-                                                "courses", FieldValue.arrayUnion(course)
-                                        )
-                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
-                                        .addOnFailureListener((e) -> Log.w(TAG, "Error deleting document", e));
+                                        .update("courses", user.getCourseList())
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully updated!"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -67,6 +65,7 @@ public class AccountController {
                     }
                 });
     }
+
 
     //unEnroll from a course
     public void removeStudentFromCourse(Course course, User user) {

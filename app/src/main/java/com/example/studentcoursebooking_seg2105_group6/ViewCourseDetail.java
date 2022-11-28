@@ -17,6 +17,8 @@ import com.example.studentcoursebooking_seg2105_group6.models.User;
 
 import org.checkerframework.checker.units.qual.A;
 
+import java.util.ArrayList;
+
 public class ViewCourseDetail extends AppCompatActivity {
 
     private static String instructorRole = "instructor";
@@ -121,8 +123,8 @@ public class ViewCourseDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewCourseDetail.this, WelcomePage.class);
-
-                accountController.addStudentToCourse(thisCourse, signedUser);
+                signedUser.addCourse(thisCourse);
+                accountController.addStudentToCourse(signedUser);
                 intent.putExtra("signedUser", signedUser);
                 startActivity(intent);
                 //create arraylist of all courses enrolled in
