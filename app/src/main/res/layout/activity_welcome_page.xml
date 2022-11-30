@@ -113,6 +113,7 @@
         android:textColor="#8A49BF"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:onClick="onClick"
         app:backgroundTint="#F9F0FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
