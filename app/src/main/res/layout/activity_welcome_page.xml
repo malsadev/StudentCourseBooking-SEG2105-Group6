@@ -105,5 +105,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".97" />
 
+    <Button
+        android:id="@+id/enrolledCourse"
+        android:layout_width="234dp"
+        android:layout_height="91dp"
+        android:text="Enrolled Courses"
+        android:textColor="#8A49BF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:backgroundTint="#F9F0FF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.81" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

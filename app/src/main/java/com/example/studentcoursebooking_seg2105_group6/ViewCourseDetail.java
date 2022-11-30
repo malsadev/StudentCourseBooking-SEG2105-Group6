@@ -50,7 +50,7 @@ public class ViewCourseDetail extends AppCompatActivity {
         Button unteachCourseBtn = findViewById(R.id.unteachCourse);
         Button enrollCourse = findViewById(R.id.enrollCourse);
         Button unEnrollCourse = findViewById(R.id.unEnrollCourse);
-        Button enrolledCourse = findViewById(R.id.enrolledCourse);
+
 
         teachCourseBtn.setEnabled(signedUser.getRole().equals(instructorRole)
                 && thisCourse.getCourseInstructor().equals("None")
@@ -65,7 +65,6 @@ public class ViewCourseDetail extends AppCompatActivity {
 
         unEnrollCourse.setEnabled(signedUser.getRole().equals(studentRole));
 
-        enrolledCourse.setEnabled(signedUser.getRole().equals(studentRole));
 
 
         //changes text to text corresponding to course details, taken from intent i
@@ -141,15 +140,6 @@ public class ViewCourseDetail extends AppCompatActivity {
             }
         });
 
-        enrolledCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ViewCourseDetail.this, WelcomePage.class);
-                accountController.enrolledCoursesList(thisCourse, signedUser);
-                intent.putExtra("signedUser", signedUser);
-                startActivity(intent);
-            }
-        });
 
 
     }

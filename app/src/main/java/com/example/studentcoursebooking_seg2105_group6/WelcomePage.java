@@ -30,10 +30,14 @@ public class WelcomePage extends AppCompatActivity {
         Button createCourseBtn=(Button)findViewById(R.id.createCourseBtn);
         Button viewCourseBtn=(Button)findViewById(R.id.viewCourseBtn);
         Button viewUserBtn = (Button) findViewById(R.id.viewUsersBtn);
+        Button enrolledCourse = findViewById(R.id.enrolledCourse);
 
-       createCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
-       viewCourseBtn.setEnabled(signedUser.getRole().equals(adminRole) || signedUser.getRole().equals(instructorRole) || signedUser.getRole().equals(studentRole));
-       viewUserBtn.setEnabled(signedUser.getRole().equals(adminRole));
+
+        createCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
+        viewCourseBtn.setEnabled(signedUser.getRole().equals(adminRole) || signedUser.getRole().equals(instructorRole) || signedUser.getRole().equals(studentRole));
+        viewUserBtn.setEnabled(signedUser.getRole().equals(adminRole));
+        enrolledCourse.setEnabled(signedUser.getRole().equals(studentRole));
+
 
 
         //back button
@@ -72,6 +76,19 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(intent);// should take to create account
             }
         });
+
+        enrolledCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomePage.this, enrolledCoursesList.class);
+               // accountController.enrolledCoursesList(thisCourse, signedUser);
+                intent.putExtra("signedUser", signedUser);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
 }
