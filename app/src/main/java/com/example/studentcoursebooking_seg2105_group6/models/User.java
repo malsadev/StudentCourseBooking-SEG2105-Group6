@@ -10,7 +10,7 @@ public class User implements Serializable {
     private String name;
     private ArrayList<Course> courseList = new ArrayList<>();
 
-    //serializaation for cross-activity context transfer
+    //serialization for cross-activity context transfer
     public User() {
 
     }
