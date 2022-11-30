@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
+import com.example.studentcoursebooking_seg2105_group6.adapters.CourseAdapter;
 import com.example.studentcoursebooking_seg2105_group6.models.Course;
 import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,7 +20,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class enrolledCoursesList extends AppCompatActivity {
-   // FirebaseFirestore db;
+    ListView listView;
     User signedUser;
 
 
@@ -27,25 +29,16 @@ public class enrolledCoursesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enrolled_courses_list);
 
-        signedUser.getCourseList();
+        loadDataInListview();
 
-//        //List of all enrolled courses
-//        public ArrayList<String> enrolledCoursesList(Course course, User signedUser){
-//            ArrayList<String> coursesList = new ArrayList<>();
-//            db.collection("users")
-//                    .whereEqualTo("courses", course.getCourseCode())
-//                    .get()
-//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                coursesList.add(course.getCourseCode());
-//                            } else {
-//                                Log.d(TAG, "Error getting documents: ", task.getException());
-//                            }
-//                        }
-//                    });
-//            return coursesList;
-//        }
     }
+
+    private void loadDataInListview() {
+        CourseAdapter adapter = new CourseAdapter(enrolledCoursesList.this, signedUser.getCourseList(),signedUser);
+        listView.setAdapter(adapter);
+
+
+    }
+
+
 }
