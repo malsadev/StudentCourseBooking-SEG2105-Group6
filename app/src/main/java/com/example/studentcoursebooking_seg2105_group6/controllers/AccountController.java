@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class AccountController {
@@ -44,7 +45,7 @@ public class AccountController {
                 });
     }
 
-    public void addStudentToCourse(User user) {
+    public void addStudentToCourse(User user, Course course) { //applies to all users
         db.collection("users")
                 .whereEqualTo("username", user.getUsername())
                 .get()
@@ -55,9 +56,7 @@ public class AccountController {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 db.collection("users").document(document.getId())
-                                        .update("courses", user.getCourseList())
-                                        .addOnSuccessListener((doc) -> Log.d(TAG, "DocumentSnapshot successfully updated!"))
-                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
+                                        .update("courses", FieldValue.arrayUnion(course));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -78,7 +77,7 @@ public class AccountController {
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 db.collection("users").document(document.getId()).
-                                        update("courses", FieldValue.arrayRemove(course))
+                                        update("courses", FieldValue.arrayRemove(course.getCourseCode()))
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
                                         .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
                                 //update((Map<String, Object> unenroll = new HashMap<>());

@@ -18,11 +18,13 @@ import android.widget.Toast;
 
 import com.example.studentcoursebooking_seg2105_group6.models.User;
 import com.example.studentcoursebooking_seg2105_group6.controllers.security.AuthController;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class CreateAccount extends AppCompatActivity {
     private String[] userTypes = {"student", "instructor", "admin"};
     private String userType;
     private boolean flagName, flagUser, flagPw;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

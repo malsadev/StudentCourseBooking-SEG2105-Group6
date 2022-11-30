@@ -1,5 +1,7 @@
 package com.example.studentcoursebooking_seg2105_group6.models;
 
+import com.google.firebase.firestore.PropertyName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,14 +17,14 @@ public class Course implements Serializable {
     private ArrayList<User> enrolledStudents = new ArrayList<>();
 
 
-    public Course(){
+    public Course() {
 
     }
 
-    public Course(String courseName, String courseCode, String courseCapacity){
+    public Course(String courseName, String courseCode, String courseCapacity) {
         this.courseName = courseName;
         this.courseCode = courseCode;
-        this.courseCapacity=courseCapacity;
+        this.courseCapacity = courseCapacity;
     }
 
 
@@ -74,12 +76,18 @@ public class Course implements Serializable {
         this.courseSchedule = courseSchedule;
     }
 
-    public void addDate(Date date){
+    public void addDate(Date date) {
         courseSchedule.add(date);
     }
 
-    public void addStudent(User user){enrolledStudents.add(user);}
+    public void addStudent(User user) {enrolledStudents.add(user);
+    }
 
-    public ArrayList<User> getStudentList(){return enrolledStudents;}
+    @PropertyName("enrolledStudents")
+    public ArrayList<User> getEnrolledStudents() {
+        return enrolledStudents;
+    }
 
+    public void setEnrolledStudents(ArrayList<User> list){enrolledStudents=list;}
 }
+

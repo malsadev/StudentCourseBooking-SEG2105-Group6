@@ -141,7 +141,6 @@ public class EditCourse extends AppCompatActivity  {
                 }else{
                     newCapacity=ogCourse.getCourseCapacity();
                 }
-
                 Course newCourse = new Course(courseName.getText().toString(), courseCode.getText().toString(), newCapacity);
                 newCourse.setCourseDescription(courseDesc.getText().toString());
 

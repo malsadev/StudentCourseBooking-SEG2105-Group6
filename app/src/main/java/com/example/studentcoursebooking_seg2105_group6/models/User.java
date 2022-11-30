@@ -1,5 +1,7 @@
 package com.example.studentcoursebooking_seg2105_group6.models;
 
+import com.google.firebase.firestore.PropertyName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -8,7 +10,7 @@ public class User implements Serializable {
     private String role;
     private String password;
     private String name;
-    private ArrayList<Course> courseList = new ArrayList<>();
+    private ArrayList<Course> courses = new ArrayList<>();
 
     //serializaation for cross-activity context transfer
     public User() {
@@ -58,7 +60,10 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Course> getCourseList(){return courseList;}
+    @PropertyName("courses")
+    public ArrayList<Course> getCourses(){return courses;}
 
-    public void addCourse(Course course){courseList.add(course);}
+    public void addCourse(Course course){courses.add(course);}
+
+    public void setCourses(ArrayList<Course> list){ courses=list;}
 }

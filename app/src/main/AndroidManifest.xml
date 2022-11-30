@@ -9,6 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentCourseBookingSEG2105Group6">
         <activity
+            android:name=".ViewEnrolledStudents"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".searchCourse"
             android:exported="false">
             <meta-data

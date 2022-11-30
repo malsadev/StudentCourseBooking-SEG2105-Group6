@@ -31,11 +31,10 @@ public class WelcomePage extends AppCompatActivity {
         Button viewCourseBtn=(Button)findViewById(R.id.viewCourseBtn);
         Button viewUserBtn = (Button) findViewById(R.id.viewUsersBtn);
 
-       createCourseBtn.setEnabled(signedUser.getRole().equals(adminRole));
-       viewCourseBtn.setEnabled(signedUser.getRole().equals(adminRole) || signedUser.getRole().equals(instructorRole) || signedUser.getRole().equals(studentRole));
-       viewUserBtn.setEnabled(signedUser.getRole().equals(adminRole));
-
-
+       if (signedUser.getRole().equals(adminRole)){
+           createCourseBtn.setVisibility(View.VISIBLE);
+           viewUserBtn.setVisibility(View.VISIBLE);
+       }
         //back button
         welcomeBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
