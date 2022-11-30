@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         AuthController authController = new AuthController();
 
+
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
-                                    if (task.getResult().isEmpty()) { //credentials now found in db
+                                    if (task.getResult().isEmpty()) { //credentials not found in db
                                         username.setText("");
                                         password.setText("");
                                         AlertDialog alert = createLoginErrorDialog();
