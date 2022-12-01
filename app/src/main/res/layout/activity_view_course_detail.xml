@@ -50,14 +50,14 @@
         android:layout_height="wrap_content"
         android:text="SCHEDULE : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <TextView
         android:id="@+id/descriptionTxt2"
@@ -65,14 +65,14 @@
         android:layout_height="wrap_content"
         android:text="DESCRIPTION : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.234" />
 
     <TextView
         android:id="@+id/scheduleDetailsTxt"
@@ -83,11 +83,11 @@
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.477" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <TextView
         android:id="@+id/descriptionTxt3"
@@ -95,14 +95,14 @@
         android:layout_height="wrap_content"
         android:text="CAPACITY : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/instructorTxt"
@@ -117,7 +117,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.329" />
+        app:layout_constraintVertical_bias="0.38" />
 
     <TextView
         android:id="@+id/changeCourseDescriptionTxt"
@@ -128,11 +128,11 @@
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247" />
+        app:layout_constraintVertical_bias="0.28" />
 
     <TextView
         android:id="@+id/capacityTxt"
@@ -147,7 +147,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <Button
         android:id="@+id/unEnrollCourse"
@@ -210,14 +210,14 @@
         android:layout_height="wrap_content"
         android:text="INSTRUCTOR : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="0.38" />
 
     <TextView
         android:id="@+id/viewDetailTitleTxt"
@@ -247,7 +247,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.157" />
 
     <Button
         android:id="@+id/editCourse"
@@ -273,7 +273,7 @@
         android:layout_height="wrap_content"
         android:text="COURSE NAME : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.039"
@@ -288,10 +288,10 @@
         android:layout_height="wrap_content"
         android:text="COURSE CODE : "
         android:textColor="#8A49BF"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -310,7 +310,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <Button
         android:id="@+id/courseDetailBackBtn"
