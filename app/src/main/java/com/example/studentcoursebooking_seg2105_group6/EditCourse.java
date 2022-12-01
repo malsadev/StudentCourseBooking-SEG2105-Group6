@@ -28,7 +28,7 @@ import java.util.Collections;
 
 public class EditCourse extends AppCompatActivity  {
     String[] days={"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
-    String[] times={"8:30AM-9:50AM", "10:00AM-11:20AM", "11:30AM-12:50PM","1:00PM- 2:20OM", "2:30PM-3:50AM","4:00PM-5:20PM","5:30PM-6:50PM","7:30PM-9:50PM"};
+    String[] times={"8:30AM-9:50AM", "10:00AM-11:20AM", "11:30AM-12:50PM","1:00PM- 2:20PM", "2:30PM-3:50AM","4:00PM-5:20PM","5:30PM-6:50PM","7:30PM-9:50PM"};
     Spinner dayOneSpinner;
     Spinner timeOneSpinner;
     String newCapacity;

@@ -81,7 +81,6 @@ public class CourseController {
 
 
     public void deleteCourse(Course course) {
-
         db.collection("courses")
                 .whereEqualTo("courseCode", course.getCourseCode())
                 .get()
@@ -125,6 +124,30 @@ public class CourseController {
                     }
                 });
     }
+
+    public void removeStudent(Course course, User user) {
+        db.collection("courses").whereEqualTo("courseCode", course.getCourseCode())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                db.collection("courses").document(document.getId()).
+                                        update("enrolledStudents", FieldValue.arrayUnion(user).delete())
+                                        .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
+                                        .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
+                                //update((Map<String, Object> unenroll = new HashMap<>());
+                                // unenroll.put("course.courseCode", FieldValue.delete());
+                            }
+                        } else{
+                            Log.d(TAG, "Error getting documents", task.getException());
+                        }
+                    }
+                });
+    }
+
 
     public void addInstructorCourse(Course course, User instructor) {
         System.out.println("in method");

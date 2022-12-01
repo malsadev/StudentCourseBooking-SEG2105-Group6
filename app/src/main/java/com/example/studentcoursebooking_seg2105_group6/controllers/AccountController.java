@@ -77,7 +77,7 @@ public class AccountController {
                             for(QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 db.collection("users").document(document.getId()).
-                                        update("courses", FieldValue.arrayRemove(course.getCourseCode()))
+                                        update("courses", FieldValue.arrayUnion(course).delete())
                                         .addOnSuccessListener((doc) -> Log.d(TAG, "Unenrolled from Course"))
                                         .addOnFailureListener((e) -> Log.w(TAG, "Error updating document", e));
                                 //update((Map<String, Object> unenroll = new HashMap<>());

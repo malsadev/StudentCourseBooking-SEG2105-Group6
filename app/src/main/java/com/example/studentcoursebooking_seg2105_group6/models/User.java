@@ -66,4 +66,13 @@ public class User implements Serializable {
     public void addCourse(Course course){courses.add(course);}
 
     public void setCourses(ArrayList<Course> list){ courses=list;}
+
+    public void removeCourse(Course course){
+        for(int i=0; i<courses.size(); ++i){
+            if (course.getCourseCode().equals(courses.get(i).getCourseCode())){
+                courses.remove(i);
+                break;
+            }
+        }
+    }
 }
