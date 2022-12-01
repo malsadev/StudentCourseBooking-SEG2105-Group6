@@ -30,11 +30,16 @@ public class WelcomePage extends AppCompatActivity {
         Button createCourseBtn=(Button)findViewById(R.id.createCourseBtn);
         Button viewCourseBtn=(Button)findViewById(R.id.viewCourseBtn);
         Button viewUserBtn = (Button) findViewById(R.id.viewUsersBtn);
+        Button viewMyCourses = findViewById(R.id.viewEnrolledCourses);
+
+
 
        if (signedUser.getRole().equals(adminRole)){
            createCourseBtn.setVisibility(View.VISIBLE);
            viewUserBtn.setVisibility(View.VISIBLE);
-       }
+       } else if (signedUser.getRole().equals(studentRole)){
+           viewMyCourses.setVisibility(View.VISIBLE);
+        }
         //back button
         welcomeBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +67,6 @@ public class WelcomePage extends AppCompatActivity {
             }
         });
 
-
         viewUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +75,16 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(intent);// should take to create account
             }
         });
+
+        viewMyCourses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomePage.this, ViewEnrolledCourses.class);
+                intent.putExtra("signedUser" , signedUser);
+                startActivity(intent);// should take to view enrolled courses
+            }
+        });
+
     }
 
 }

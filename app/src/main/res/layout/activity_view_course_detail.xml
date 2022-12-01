@@ -169,23 +169,6 @@
 
 
     <Button
-        android:id="@+id/enrolledCourse"
-        android:layout_width="296dp"
-        android:layout_height="41dp"
-        android:layout_below="@id/descriptionTxt"
-        android:text="Enrolled Course"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:backgroundTint="#8B48BE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
-
-    <Button
         android:id="@+id/teachCourse"
         android:layout_width="290dp"
         android:layout_height="50dp"

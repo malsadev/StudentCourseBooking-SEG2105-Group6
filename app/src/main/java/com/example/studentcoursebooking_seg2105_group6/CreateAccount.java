@@ -141,7 +141,18 @@ public class CreateAccount extends AppCompatActivity {
                     alert11.show();
                     startActivity(intent);// should take to main sign in page
                 }else{
-                    Toast.makeText(CreateAccount.this, "Failed to Create Account", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateAccount.this);
+                    builder1.setMessage("Failed to Create Account.");
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton(
+                            "Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
                 }
 
             }

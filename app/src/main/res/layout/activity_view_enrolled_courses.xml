@@ -1,42 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ViewEnrolledCourses">
+
 
     <Button
-        android:id="@+id/searchCoursesBtn"
+        android:id="@+id/enrolledCoursesBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewCourseTxtV2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="61.5dp"
-        android:layout_marginEnd="61.5dp"
-        android:layout_marginTop="7dp"
-        android:text="Search for a Course"
-        android:textColor="#FFFFFF"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:backgroundTint="#8B48BE" />
-
-    <Button
-        android:id="@+id/ViewCourseListBackBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchCoursesBtn"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginVertical="545dp"
-        android:layout_marginStart="163dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginTop="579dp"
-        android:layout_marginEnd="161dp"
         android:text="BACK"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
@@ -47,35 +22,40 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".99" />
+        app:layout_constraintVertical_bias="0.96" />
 
     <TextView
-        android:id="@+id/viewCourseTxtV2"
+        android:id="@+id/viewCoursesText"
         android:layout_width="268dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="14dp"
         android:layout_marginEnd="72dp"
         android:gravity="center"
         android:text="View Courses"
         android:textColor="#8A49BF"
         android:textSize="40sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.039" />
 
     <ListView
-        android:id="@+id/idLVCourses"
+        android:id="@+id/coursesLV"
         android:layout_width="match_parent"
         android:layout_height="508dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="152dp"
-        android:layout_marginBottom="70dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
